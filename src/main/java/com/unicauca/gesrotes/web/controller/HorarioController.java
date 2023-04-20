@@ -16,7 +16,7 @@ public class HorarioController {
 
     @GetMapping("/sin_configurar")
     @Operation(summary = "horario no configurado")
-    public ResponseEntity<String> getHorarios(){
+    public ResponseEntity<String> listaHorarioNoConfigurado(){
         return null;
     }
 }
