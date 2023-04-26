@@ -4,25 +4,56 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "docente")
+@Table(name = "docentes")
 public class Docente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "doce_codigoinst")
-    private Long codigoinst;
-    @Column(name = "doce_escalafon")
+    @Column(name = "id_docente")
+    private Long id;
+    @Column(name = "codigo")
+    private Long codigo;
+    @Column(name = "cargoacademicoadministrativo")
+    private String cargoAcademicoAdministrativo;
+    @Column(name = "escalafon")
     private String escalafon;
-    @Column(name = "doce_vinculacion")
-    private String vinculacion;
-    @Column(name = "doce_cargoAdAc")
-    private String cargoAdAc;
-    @Column(name = "doce_observacion")
-    private String observacion;
+    @Column(name = "tipoVinculacion")
+    private String tipoVinculacion;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="AsignaturaDocentes",
+            joinColumns =  @JoinColumn(name = "docentes_id_docente"),
+            inverseJoinColumns = @JoinColumn(name = "asignaturas_id_asignaturas")
+    )
+    private List<Asignatura> asignaturas;
+    @OneToMany(mappedBy = "docente", cascade = CascadeType.ALL)
+    private List<Modulo> modulos;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_id_personasdoc")
+    private Persona persona;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_id_programasdoc")
+    private Programa programa;
 
-    //private Persona persona;
+    @OneToMany(mappedBy = "docente",cascade = CascadeType.ALL)
+    private List<SeguimientoDocente> seguimientosDocentes;
+
+    public void agregarModulo(Modulo modulo){
+        if(this.modulos == null){
+            this.modulos = new ArrayList<>();
+        }
+        this.modulos.add(modulo);
+    }
+
+    public void agregarSeguimientosDocentes(SeguimientoDocente seguimientoDocente){
+        if(this.seguimientosDocentes == null){
+            this.seguimientosDocentes = new ArrayList<>();
+        }
+        this.seguimientosDocentes.add(seguimientoDocente);
+    }
 }

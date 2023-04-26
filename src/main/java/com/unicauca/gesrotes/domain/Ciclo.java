@@ -11,29 +11,24 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "grupos")
-public class Grupo {
+@Table(name = "ciclos")
+public class Ciclo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_grupos")
+    @Column(name = "id_ciclos")
     private Long id;
     @Temporal(TemporalType.DATE)
-    private Date vigencia;
-    private Boolean activo;
-    @ManyToMany(mappedBy = "grupos")
-    private List<Estudiante> estudiantes;
+    @Column(name = "fechainicio")
+    private Date fechaInicio;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "fechafin")
+    private Date fechaFin;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_id_asignaturasgru")
+    @JoinColumn(name = "fk_id_asignaturascic")
     private Asignatura asignatura;
-    @OneToMany(mappedBy = "grupo",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "ciclo", cascade = CascadeType.ALL)
     private List<Asignacion> asignaciones;
-
-    public void agragarEstudiante(Estudiante estudiante){
-        if(this.estudiantes == null){
-            this.estudiantes = new ArrayList<>();
-        }
-        this.estudiantes.add(estudiante);
-    }
 
     public void agregarAsignacion(Asignacion asignacion){
         if(this.asignaciones == null){
@@ -41,5 +36,4 @@ public class Grupo {
         }
         this.asignaciones.add(asignacion);
     }
-
 }
