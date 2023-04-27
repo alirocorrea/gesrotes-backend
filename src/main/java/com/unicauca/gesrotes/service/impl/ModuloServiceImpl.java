@@ -23,7 +23,6 @@ public class ModuloServiceImpl implements ModuloService{
 
     private ModuloRepository modulosRepository;
     private DocenteRepository docentesRepository;
-    //TODO:Manejar excepciones
     @Override
     public ModuloResponse registrarNombreModulo(ModuloRequest moduloRequest, long idDocente) {
         if(!docenteExiste(idDocente)){
@@ -49,13 +48,10 @@ public class ModuloServiceImpl implements ModuloService{
         else{
             return true;
         }
-        
     }
 
     private boolean docenteExiste(long idDocente){
         return docentesRepository.existsById(idDocente);
     }
 
-   
-    
 }

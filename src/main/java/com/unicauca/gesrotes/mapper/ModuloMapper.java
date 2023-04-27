@@ -17,8 +17,11 @@ public final class ModuloMapper {
                 .build();
     }
 
-    public static ModuloResponse mapearResponse(Modulo horario) {
-        return ModuloResponse.builder().id(horario.getId()).build();
+    public static ModuloResponse mapearResponse(Modulo modulo) {
+        return ModuloResponse.builder()
+        .id(modulo.getId())
+        .nombre_modulo(modulo.getNombre())
+        .build();
     }
 
 }
