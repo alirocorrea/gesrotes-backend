@@ -7,6 +7,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 
 import com.unicauca.gesrotes.domain.Modulo;
+import com.unicauca.gesrotes.domain.Docente;
 import com.unicauca.gesrotes.dto.request.ModuloRequest;
 import com.unicauca.gesrotes.dto.response.ModuloResponse;
 import com.unicauca.gesrotes.mapper.ModuloMapper;
@@ -30,13 +31,14 @@ public class ModuloServiceImpl implements ModuloService{
                 HttpStatus.NOT_FOUND, "El Docente no existe"
             );
         }
+        Docente varDocente=docentesRepository.findById(idDocente).get();
         if (esValidoNombre(moduloRequest)) {
             throw new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "El nombre de Modulo ya existe"
             );
         }
-        System.out.println("Guardando");
         Modulo modulo = ModuloMapper.mapearEntidadNombre(moduloRequest);
+        modulo.setDocente(varDocente);
         return ModuloMapper.mapearResponse(modulosRepository.save(modulo));
     }
     
@@ -53,6 +55,7 @@ public class ModuloServiceImpl implements ModuloService{
     private boolean docenteExiste(long idDocente){
         return docentesRepository.existsById(idDocente);
     }
+
    
     
 }
