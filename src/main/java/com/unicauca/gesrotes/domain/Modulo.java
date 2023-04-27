@@ -2,11 +2,13 @@ package com.unicauca.gesrotes.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.Builder;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
 @Getter
 @Setter
 @Entity
