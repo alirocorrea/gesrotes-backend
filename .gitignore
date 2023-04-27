@@ -34,3 +34,6 @@ build/
 
 ### MAVEN ###
 .mvn/
+
+### DIRS PROJECT ###
+src/main/resources/
