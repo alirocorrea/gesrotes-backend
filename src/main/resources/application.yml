@@ -7,6 +7,10 @@ spring:
     url: jdbc:mysql://aws.connect.psdb.cloud/gesrotes-db?sslMode=VERIFY_IDENTITY
     username: a9jy3qf696j173nvmop7
     password: pscale_pw_BoUG3yITPZNkTRriDDbNYxTZ1hzEMb7Uw1DcHEtpTNc
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   jackson:
     serialization:
       fail-on-empty-beans: false
