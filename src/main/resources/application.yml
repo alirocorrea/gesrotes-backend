@@ -5,8 +5,8 @@ spring:
     name: gesrotes-backend
   datasource:
     url: jdbc:mysql://aws.connect.psdb.cloud/gesrotes-db?sslMode=VERIFY_IDENTITY
-    username: nxuflqv7xocahgwk1652
-    password: pscale_pw_iWqn2VGA5lMWEq7wmRBcjovbC4bEyluhaFVzd9tBmKU
+    username: a9jy3qf696j173nvmop7
+    password: pscale_pw_BoUG3yITPZNkTRriDDbNYxTZ1hzEMb7Uw1DcHEtpTNc
   jackson:
     serialization:
       fail-on-empty-beans: false
