@@ -19,15 +19,15 @@ public class ModuloServiceImpl implements ModuloService {
 
     @Override
     public ModuloSinHorarioDTO listarModulosSinHorarioAsignadoPorIdDocenteIdAsignatura(Long id_docente, Long id_asignatura) {
-        List<Modulo> respuestaModulo = moduloRespository.listaModulosSinHorarioAsignado(id_docente,id_asignatura);
-        List<ModuloDTO> respuestaDto = new ArrayList<>();
-        for(Modulo m : respuestaModulo){
+        List<Modulo> resEntityModulo = moduloRespository.listaModulosSinHorarioAsignado(id_docente,id_asignatura);
+        List<ModuloDTO> resDto = new ArrayList<>();
+        for(Modulo m : resEntityModulo){
             ModuloDTO objModulo = mapearEntity(m);
-            respuestaDto.add(objModulo);
+            resDto.add(objModulo);
         }
-        ModuloSinHorarioDTO res = new ModuloSinHorarioDTO();
-        res.setModulos_sin_horarios(respuestaDto);
-        return res;
+        ModuloSinHorarioDTO resModuloSinHorario = new ModuloSinHorarioDTO();
+        resModuloSinHorario.setModulos_sin_horarios(resDto);
+        return resModuloSinHorario;
     }
 
     private ModuloDTO mapearEntity(Modulo modulo){
