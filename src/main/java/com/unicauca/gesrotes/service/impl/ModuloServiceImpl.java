@@ -2,6 +2,7 @@ package com.unicauca.gesrotes.service.impl;
 
 import com.unicauca.gesrotes.domain.Modulo;
 import com.unicauca.gesrotes.dto.response.ModuloDTO;
+import com.unicauca.gesrotes.dto.response.ModuloSinHorarioDTO;
 import com.unicauca.gesrotes.repository.ModuloRespository;
 import com.unicauca.gesrotes.service.ModuloService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +18,16 @@ public class ModuloServiceImpl implements ModuloService {
     private ModuloRespository moduloRespository;
 
     @Override
-    public List<ModuloDTO> listarModulosSinHorarioAsignadoPorIdDocenteIdAsignatura(Long id_docente, Long id_asignatura) {
+    public ModuloSinHorarioDTO listarModulosSinHorarioAsignadoPorIdDocenteIdAsignatura(Long id_docente, Long id_asignatura) {
         List<Modulo> respuestaModulo = moduloRespository.listaModulosSinHorarioAsignado(id_docente,id_asignatura);
         List<ModuloDTO> respuestaDto = new ArrayList<>();
         for(Modulo m : respuestaModulo){
             ModuloDTO objModulo = mapearEntity(m);
             respuestaDto.add(objModulo);
         }
-        return respuestaDto;
+        ModuloSinHorarioDTO res = new ModuloSinHorarioDTO();
+        res.setModulos_sin_horarios(respuestaDto);
+        return res;
     }
 
     private ModuloDTO mapearEntity(Modulo modulo){

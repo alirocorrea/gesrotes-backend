@@ -1,10 +1,11 @@
 package com.unicauca.gesrotes.service;
 
 import com.unicauca.gesrotes.dto.response.ModuloDTO;
+import com.unicauca.gesrotes.dto.response.ModuloSinHorarioDTO;
 
 import java.util.List;
 
 public interface ModuloService {
 
-    List<ModuloDTO> listarModulosSinHorarioAsignadoPorIdDocenteIdAsignatura(Long id_docente,Long id_asignatura);
+    ModuloSinHorarioDTO listarModulosSinHorarioAsignadoPorIdDocenteIdAsignatura(Long id_docente, Long id_asignatura);
 }
