@@ -1,7 +1,9 @@
 package com.unicauca.gesrotes.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 import javax.persistence.*;
@@ -9,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -26,6 +30,7 @@ public class Modulo {
 
     @OneToMany(mappedBy = "modulo", cascade = CascadeType.ALL)
     private List<HorarioModulo> horariosModulos;
+
 
     public void agregarHorarioModulo(HorarioModulo horariosModulos){
         if(this.horariosModulos == null){

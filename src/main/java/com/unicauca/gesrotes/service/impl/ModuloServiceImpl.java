@@ -4,6 +4,7 @@ package com.unicauca.gesrotes.service.impl;
 import org.springframework.stereotype.Service;
 
 import org.springframework.web.server.ResponseStatusException;
+import org.apache.commons.lang3.ObjectUtils.Null;
 import org.springframework.http.HttpStatus;
 
 import com.unicauca.gesrotes.domain.Modulo;
@@ -31,9 +32,9 @@ public class ModuloServiceImpl implements ModuloService{
             );
         }
         Docente varDocente=docentesRepository.findById(idDocente).get();
-        if (esValidoNombre(moduloRequest)) {
+        if (!esValidoNombre(moduloRequest)) {
             throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "El nombre de Modulo ya existe"
+                HttpStatus.CONFLICT, "El nombre de Modulo ya existe"
             );
         }
         Modulo modulo = ModuloMapper.mapearEntidadNombre(moduloRequest);
@@ -42,11 +43,11 @@ public class ModuloServiceImpl implements ModuloService{
     }
     
     private boolean esValidoNombre(ModuloRequest request) {
-        if(modulosRepository.findByNombre(request.getNombre_modulo()).size() > 0){
-            return false;
+        if(modulosRepository.findByNombre(request.getNombre_modulo()).size() == 0){
+            return true;
         }
         else{
-            return true;
+            return false;
         }
     }
 
