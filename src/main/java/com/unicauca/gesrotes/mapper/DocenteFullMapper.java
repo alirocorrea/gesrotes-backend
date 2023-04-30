@@ -13,11 +13,15 @@ public final class DocenteFullMapper {
     }
 
     public static DocenteFullResponse mapearResponse(List<DocenteResponse>  parDocentes) {
-        //TODO:Contrar profesores sin horarios por configurar
-        //EJM// info:Faltan 2 Profesores por registrar horario
+        int counterPersonasPorRegistrar=0;
+        for(DocenteResponse iDocenteResponse : parDocentes){
+            if(!iDocenteResponse.getInfo().equals("None")){
+                counterPersonasPorRegistrar++;
+            }
+        }
         return DocenteFullResponse.builder()
         .docentes(parDocentes)
-        .info("TODO:Chequeos")
+        .info("Faltan "+counterPersonasPorRegistrar+" Personas por registrar Horarios")
         .build();
     }
 

@@ -30,7 +30,7 @@ public class DocenteServiceImpl implements DocenteService{
     public DocenteFullResponse listarDocentesAsignatura(long id_asignatura) {
         if(!asignaturaExiste(id_asignatura)){
             throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "La Asignatura no existe"
+                HttpStatus.NOT_FOUND, "La Asignatura no existe."
             );
         }
         
@@ -42,6 +42,11 @@ public class DocenteServiceImpl implements DocenteService{
         List<DocenteResponse> listaResultado=new ArrayList<>();
         for(Docente iDocente : listaDocentesAsignaturas){
             listaResultado.add(DocenteMapper.mapearResponse(iDocente));
+        }
+        if(listaResultado.size()==0){
+            throw new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "No se encontraron Docentes asociados."
+            );
         }
         return DocenteFullMapper.mapearResponse(listaResultado);
     }

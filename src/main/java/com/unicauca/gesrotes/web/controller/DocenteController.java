@@ -28,7 +28,6 @@ public class DocenteController {
     public DocenteFullResponse listardocentesAsignatura(
                                                 @PathVariable("id_asignatura") String id_asignatura) {
         Long L = Long.parseLong(id_asignatura);
-        //TODO:Listar docentes asociados a asignatura  
         return docenteServicio.listarDocentesAsignatura(L);                                          
     }
 }
