@@ -1,13 +1,13 @@
 package com.unicauca.gesrotes.dto.response;
 
+import java.util.List;
+
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class DocenteResponse {
-    private Long id;
-    private String nombre;
-    //private String ruta_foto;
+public class DocenteFullResponse {
+    private List<DocenteResponse> docentes;
     private String info;
 }
