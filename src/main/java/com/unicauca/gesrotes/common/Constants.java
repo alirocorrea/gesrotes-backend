@@ -18,6 +18,10 @@ public final class Constants {
     public static final String APPLICATION_EXCEPTION = "Application Exception";
     public static final String DATA_EXCEPTION = "Data Exception";
     public static final String CONSTRAINT_VIOLATION_EXCEPTION = "Constraint Violation Exception";
+    public static final String ARGUMENT_VIOLATION_EXCEPTION = "Argument Violation Exception";
+
+    //SIMBOLOS
+    public static final String ESPACIO_EN_BLANCO = " ";
 
     //GENERAL
     public static final String UTILITY_CLASS = "Utility class";

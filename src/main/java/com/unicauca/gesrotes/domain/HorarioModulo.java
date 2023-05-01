@@ -1,6 +1,9 @@
 package com.unicauca.gesrotes.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,32 +13,35 @@ import java.util.List;
 
 @Getter
 @Setter
+@Builder
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "HorariosModulos")
 public class HorarioModulo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_horariosmodulos")
+    @Column(name="id_HorariosModulos")
     private Long id;
     @Column(name = "dia")
     private String dia;
-    @Column(name = "horainicio")
+    @Column(name = "horaInicio")
     @Temporal(TemporalType.TIME)
     private Date horaInicio;
-    @Column(name = "horafin")
+    @Column(name = "horaFin")
     @Temporal(TemporalType.TIME)
     private Date horaFin;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_id_modulos")
+    @JoinColumn(name = "fk_id_Modulos")
     private Modulo modulo;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_id_servicioshm")
+    @JoinColumn(name = "fk_id_ServiciosHM")
     private Servicio servicio;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_id_escenarioshm")
+    @JoinColumn(name = "fk_id_EscenariosHM")
     private Escenario escenario;
-    @OneToMany(mappedBy = "horarioModulo", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "horarioModulo")
     private List<Asignacion> asignaciones;
 
     public void agregarAsignacion(Asignacion asignacion){
