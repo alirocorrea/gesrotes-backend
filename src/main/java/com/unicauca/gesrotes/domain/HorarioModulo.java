@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "HorariosModulos")
+@Table(name = "horariosmodulos")
 public class HorarioModulo {
 
     @Id

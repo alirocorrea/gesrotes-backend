@@ -33,7 +33,7 @@ public class Asignatura {
     @OneToMany(mappedBy = "asignatura", cascade = CascadeType.ALL)
     private List<Grupo> grupos;
     @OneToMany(mappedBy = "asignatura", cascade = CascadeType.ALL)
-    private List<SeguimientoAcademisco> seguimientoAcademiscos;
+    private List<SeguimientoAcademico> seguimientoAcademiscos;
 
     public void agregarDocente (Docente docente){
         if(this.docentes == null){
@@ -63,7 +63,7 @@ public class Asignatura {
         this.grupos.add(grupo);
     }
 
-    public void agregarSeguimientoAcademico(SeguimientoAcademisco seguimientoAcademisco){
+    public void agregarSeguimientoAcademico(SeguimientoAcademico seguimientoAcademisco){
         if(this.seguimientoAcademiscos == null){
             this.seguimientoAcademiscos = new ArrayList<>();
         }

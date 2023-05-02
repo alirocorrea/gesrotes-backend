@@ -40,7 +40,7 @@ public class Estudiante {
     )
     private List<Asignatura> asignaturas;
     @OneToMany(mappedBy = "estudiante", cascade = CascadeType.ALL)
-    private List<SeguimientoAcademisco> seguimientoAcademiscos;
+    private List<SeguimientoAcademico> seguimientoAcademiscos;
 
     public void agregarGrupo(Grupo grupo){
         if(this.grupos == null){
@@ -56,7 +56,7 @@ public class Estudiante {
         this.asignaturas.add(asignatura);
     }
 
-    public void agregarSeguimientoAcademico(SeguimientoAcademisco seguimientoAcademisco){
+    public void agregarSeguimientoAcademico(SeguimientoAcademico seguimientoAcademisco){
         if(this.seguimientoAcademiscos == null){
             this.seguimientoAcademiscos = new ArrayList<>();
         }

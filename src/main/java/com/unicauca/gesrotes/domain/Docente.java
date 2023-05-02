@@ -26,7 +26,7 @@ public class Docente {
     @Column(name = "tipoVinculacion")
     private String tipoVinculacion;
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="AsignaturaDocentes",
+    @JoinTable(name="asignaturadocentes",
             joinColumns =  @JoinColumn(name = "docentes_id_docente"),
             inverseJoinColumns = @JoinColumn(name = "asignaturas_id_asignaturas")
     )

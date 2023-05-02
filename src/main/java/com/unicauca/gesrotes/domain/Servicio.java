@@ -20,7 +20,9 @@ public class Servicio {
     private String descripcion;
     @OneToMany(mappedBy = "servicio", cascade = CascadeType.ALL)
     private List<HorarioModulo> horarioModulo;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_id_etiquetasser")
+    private Etiqueta etiqueta;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_id_escenariosser")
     private Escenario escenario;

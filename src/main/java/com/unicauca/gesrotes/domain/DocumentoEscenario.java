@@ -9,7 +9,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "DocumentosEscenarios")
+@Table(name = "documentosescenarios")
 public class DocumentoEscenario {
 
     @Id
