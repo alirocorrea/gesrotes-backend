@@ -4,15 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.unicauca.gesrotes.common.sortDateCompare;
 import com.unicauca.gesrotes.domain.Asignatura;
 import com.unicauca.gesrotes.domain.Ciclo;
 import com.unicauca.gesrotes.dto.response.CicloResponse;
 import com.unicauca.gesrotes.dto.response.CicloResponseList;
+import com.unicauca.gesrotes.exception.ApplicationException;
 import com.unicauca.gesrotes.mapper.CicloListMapper;
 import com.unicauca.gesrotes.mapper.CicloMapper;
 import com.unicauca.gesrotes.repository.AsignaturaRepository;
@@ -31,9 +30,7 @@ public class CicloServiceImpl implements CicloService{
     @Override
     public CicloResponseList listarCiclosAsignatura(long id_asignatura) {
         if(!asignaturaExiste(id_asignatura)){
-            throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "La Asignatura no existe."
-            );
+            throw new ApplicationException("La Asignatura no existe");
         }
         
         Asignatura varAsignatura = asignaturasRepository.findById(id_asignatura).get();
@@ -42,9 +39,7 @@ public class CicloServiceImpl implements CicloService{
         listaCiclosAsignaturas=ciclosRepository.findByAsignatura(varAsignatura);
 
         if(listaCiclosAsignaturas.size()==0){
-            throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "La Asignatura no tiene Ciclos asociados."
-            );
+            throw new ApplicationException("La Asignatura no tiene Ciclos asociados");
         }
         Collections.sort(listaCiclosAsignaturas, new sortDateCompare());
         List<CicloResponse> listaResultado=new ArrayList<>();
