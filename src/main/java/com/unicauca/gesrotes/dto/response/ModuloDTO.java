@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 @Builder
-public class DocenteResponse {
+public class ModuloDTO {
+
     private Long id;
     private String nombre;
-    private String info;
 }
