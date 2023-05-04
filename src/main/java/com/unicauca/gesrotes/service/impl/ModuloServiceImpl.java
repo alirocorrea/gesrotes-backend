@@ -26,7 +26,6 @@ public class ModuloServiceImpl implements ModuloService{
 
     private ModuloRepository modulosRepository;
     private DocenteRepository docentesRepository;
-    private ModuloRespository moduloRespository;
     @Override
     public ModuloResponse registrarNombreModulo(ModuloRequest moduloRequest, long idDocente) {
         if(!docenteExiste(idDocente)){
@@ -55,7 +54,7 @@ public class ModuloServiceImpl implements ModuloService{
 
     @Override
     public ModuloSinHorarioDTO listarModulosSinHorarioAsignadoPorIdDocenteIdAsignatura(Long id_docente, Long id_asignatura) {
-        List<ModuloDTO> resDto = moduloRespository.listaModulosSinHorarioAsignado(id_docente,id_asignatura).stream().map(ModuloMapper::mapModulo).collect(Collectors.toList());
+        List<ModuloDTO> resDto = modulosRepository.listaModulosSinHorarioAsignado(id_docente,id_asignatura).stream().map(ModuloMapper::mapModulo).collect(Collectors.toList());
         ModuloSinHorarioDTO resModuloSinHorario = new ModuloSinHorarioDTO();
         resModuloSinHorario.setModulos_sin_horarios(resDto);
         return resModuloSinHorario;
