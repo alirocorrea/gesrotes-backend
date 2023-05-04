@@ -10,7 +10,6 @@ import com.unicauca.gesrotes.dto.ModuloSinHorarioDTO;
 import com.unicauca.gesrotes.mapper.ModuloMapper;
 import com.unicauca.gesrotes.repository.DocenteRepository;
 import com.unicauca.gesrotes.repository.ModuloRepository;
-import com.unicauca.gesrotes.repository.ModuloRespository;
 import com.unicauca.gesrotes.service.ModuloService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
