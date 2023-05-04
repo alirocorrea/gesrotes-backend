@@ -1,4 +1,4 @@
-package com.unicauca.gesrotes.dto.response;
+package com.unicauca.gesrotes.dto;
 
 import lombok.Builder;
 import lombok.Data;

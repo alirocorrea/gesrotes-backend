@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-// Global Swagger configuration, do not replicate this code in other controllers
+// Configuración global de Swagger, no replique este código en otros controladores
 @OpenAPIDefinition(info = @Info(
         title = Constants.SWAGGER_TITLE,
         description = Constants.SWAGGER_DESCRIPTION,
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/common")
-@Tag(name = "Common Controller", description = "Servicios comunes")
+@Tag(name = "Common Controller", description = "Servicios comunes y de utilidad")
 public class CommonController {
 
     private CommonService commonService;

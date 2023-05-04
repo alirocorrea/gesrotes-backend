@@ -19,7 +19,7 @@ import javax.validation.Valid;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/horarios")
+@RequestMapping("/api/horarios")
 @Tag(name = "Horario Controller", description = "Servicio Horarios")
 public class HorarioController {
     

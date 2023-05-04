@@ -30,7 +30,7 @@ public class HorarioMapper {
         String horaFin = Util.dateToFormato12horas(horarioModulo.getHoraFin());
         return HorarioDTO.builder()
                 .id(horarioModulo.getId())
-                .descripcion(horarioModulo.getDia() + " " + horaInicio + " - " + horaFin)
+                .descripcion(Util.stringToCapitalize(horarioModulo.getDia()) + " " + horaInicio + " - " + horaFin)
                 .build();
     }
 

@@ -2,7 +2,7 @@ package com.unicauca.gesrotes.web.controller;
 
 import com.unicauca.gesrotes.dto.request.ModuloRequest;
 import com.unicauca.gesrotes.dto.response.ModuloResponse;
-import com.unicauca.gesrotes.dto.response.ModuloSinHorarioDTO;
+import com.unicauca.gesrotes.dto.ModuloSinHorarioDTO;
 import com.unicauca.gesrotes.service.ModuloService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
