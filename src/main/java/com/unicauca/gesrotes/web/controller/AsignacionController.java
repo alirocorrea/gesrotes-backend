@@ -25,4 +25,10 @@ public class AsignacionController {
     public ResponseEntity<EliminarAsignacionResponse> eliminarAsignacionesPorIdGrupoIdCiclo(@RequestParam Long id_grupo, @RequestParam Long id_ciclo){
        return ResponseEntity.ok( asignacionService.eliminarAsignacionesPorIdGrupoIdCiclo(id_grupo,id_ciclo));
     }
+
+    @Operation(summary = "Eliminar asignacion existente por un idCiclo, idGrupo, idHorario")
+    @DeleteMapping("/eliminar")
+    public ResponseEntity<EliminarAsignacionResponse> eliminarAsignacionPorIdGurpoIdCicloIdHorario(@RequestParam Long id_grupo, @RequestParam Long id_ciclo, @RequestParam Long id_horario){
+        return ResponseEntity.ok(asignacionService.eliminarAsignacionesPorIdGrupoIdCicloIdHorario(id_grupo,id_ciclo,id_horario));
+    }
 }

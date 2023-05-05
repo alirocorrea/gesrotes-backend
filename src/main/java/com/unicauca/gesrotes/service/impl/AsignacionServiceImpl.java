@@ -18,4 +18,11 @@ public class AsignacionServiceImpl implements AsignacionService {
         EliminarAsignacionResponse response =  EliminarAsignacionResponse.builder().borrado(borrado).build();
         return response;
     }
+
+    @Override
+    public EliminarAsignacionResponse eliminarAsignacionesPorIdGrupoIdCicloIdHorario(Long id_grupo, Long id_ciclo, Long id_Horario) {
+        boolean borrado = asignacionRepository.eliminarAsignacionesPorIdGrupoIdCicloIdHorario(id_grupo,id_ciclo,id_Horario) > 0;
+        EliminarAsignacionResponse response = EliminarAsignacionResponse.builder().borrado(borrado).build();
+        return response;
+    }
 }
