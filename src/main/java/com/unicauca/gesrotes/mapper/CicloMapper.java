@@ -2,6 +2,7 @@ package com.unicauca.gesrotes.mapper;
 
 import com.unicauca.gesrotes.common.Constants;
 import com.unicauca.gesrotes.domain.Ciclo;
+import com.unicauca.gesrotes.dto.request.CicloRequest;
 import com.unicauca.gesrotes.dto.response.CicloResponse;
 
 public final class CicloMapper {
@@ -17,5 +18,10 @@ public final class CicloMapper {
         .fin(FechaMapper.mapearResponse(ciclo.getFechaFin()))
         .build();
     }
-
+    public static Ciclo mapearCiclo(CicloRequest cicloRequest) {
+        return Ciclo.builder()
+                .fechaInicio(cicloRequest.getInicio())
+                .fechaFin(cicloRequest.getFin())
+                .build();
+    }
 }
