@@ -4,6 +4,7 @@ import com.unicauca.gesrotes.common.Constants;
 import com.unicauca.gesrotes.domain.Modulo;
 import com.unicauca.gesrotes.dto.request.ModuloRequest;
 import com.unicauca.gesrotes.dto.response.ModuloResponse;
+import com.unicauca.gesrotes.dto.ModuloDTO;
 
 public final class ModuloMapper {
     
@@ -22,6 +23,13 @@ public final class ModuloMapper {
         .id(modulo.getId())
         .nombre_modulo(modulo.getNombre())
         .build();
+    }
+
+    public static ModuloDTO mapModulo(Modulo modulo){
+        return ModuloDTO.builder()
+                .id(modulo.getId())
+                .nombre(modulo.getNombre())
+                .build();
     }
 
 }

@@ -5,8 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class DocenteResponse {
+public class ServicioResponse {
     private Long id;
-    private String nombre;
-    private String info;
+    private String descripcion;
 }

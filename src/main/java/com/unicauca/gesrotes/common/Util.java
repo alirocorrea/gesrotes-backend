@@ -44,8 +44,7 @@ public final class Util {
         return Check.isNotNull(date) && (date.compareTo(LocalDate.now()) <= 0);
     }
 
-    public static String stringToCapitalize(final String str)
-    {
+    public static String stringToCapitalize(final String str) {
         if (str != null && !str.isBlank()) {
             return str.substring(0, 1).toUpperCase() + str.substring(1);
         }

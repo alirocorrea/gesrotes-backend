@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 @Builder
-public class DocenteResponse {
-    private Long id;
-    private String nombre;
-    private String info;
+public class FechaResponse {
+    private String mes;
+    private int dia;
+    private int anyo;
 }

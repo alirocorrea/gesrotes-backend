@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @AllArgsConstructor
 @Tag(name = "Docente Controller" , description = "Servicios relacionados con los docentes")
 @RestController
-@RequestMapping("/docentes")
+@RequestMapping("/api/docentes")
 public class DocenteController {
     
     private DocenteService docenteServicio;

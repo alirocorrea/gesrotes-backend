@@ -3,14 +3,13 @@ package com.unicauca.gesrotes.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.unicauca.gesrotes.domain.Asignatura;
 import com.unicauca.gesrotes.domain.Docente;
 import com.unicauca.gesrotes.dto.response.DocenteFullResponse;
 import com.unicauca.gesrotes.dto.response.DocenteResponse;
+import com.unicauca.gesrotes.exception.ApplicationException;
 import com.unicauca.gesrotes.mapper.DocenteFullMapper;
 import com.unicauca.gesrotes.mapper.DocenteMapper;
 import com.unicauca.gesrotes.repository.AsignaturaRepository;
@@ -29,9 +28,7 @@ public class DocenteServiceImpl implements DocenteService{
     @Override
     public DocenteFullResponse listarDocentesAsignatura(long id_asignatura) {
         if(!asignaturaExiste(id_asignatura)){
-            throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "La Asignatura no existe."
-            );
+            throw new ApplicationException("La Asignatura no existe");
         }
         
         Asignatura varAsignatura = asignaturasRepository.findById(id_asignatura).get();
@@ -44,9 +41,7 @@ public class DocenteServiceImpl implements DocenteService{
             listaResultado.add(DocenteMapper.mapearResponse(iDocente));
         }
         if(listaResultado.size()==0){
-            throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "No se encontraron Docentes asociados."
-            );
+            throw new ApplicationException("No se encontraron docentes asociados");
         }
         return DocenteFullMapper.mapearResponse(listaResultado);
     }

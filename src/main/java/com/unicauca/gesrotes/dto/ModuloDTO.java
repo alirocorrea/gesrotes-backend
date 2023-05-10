@@ -1,12 +1,12 @@
-package com.unicauca.gesrotes.dto.response;
+package com.unicauca.gesrotes.dto;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class DocenteResponse {
+public class ModuloDTO {
+
     private Long id;
     private String nombre;
-    private String info;
 }
