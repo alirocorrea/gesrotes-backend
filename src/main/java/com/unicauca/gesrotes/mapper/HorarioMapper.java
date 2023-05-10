@@ -10,6 +10,10 @@ import com.unicauca.gesrotes.dto.response.CreateHorarioResponse;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+
+@Component
 public class HorarioMapper {
 
     private HorarioMapper() {
@@ -41,4 +45,15 @@ public class HorarioMapper {
                 .horaFin(Util.numeroHoraToDateHora(request.getHoraFin()))
                 .build();
     }
+
+    public CreateHorarioResponse domainToDTO(HorarioModulo horarioModulo) {
+        CreateHorarioResponse createHorarioResponse = new CreateHorarioResponse();
+        createHorarioResponse.setId(horarioModulo.getId());
+        createHorarioResponse.setNombre(horarioModulo.getNombre());
+        createHorarioResponse.setHorario(horarioModulo.getHorario());
+        return createHorarioResponse;
+    }
+    
+
+
 }

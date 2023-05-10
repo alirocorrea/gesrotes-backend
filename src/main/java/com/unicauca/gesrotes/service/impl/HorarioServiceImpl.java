@@ -17,6 +17,7 @@ import com.unicauca.gesrotes.repository.ModuloRepository;
 import com.unicauca.gesrotes.repository.ServicioRepository;
 import com.unicauca.gesrotes.service.HorarioService;
 import lombok.AllArgsConstructor;
+
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 import com.unicauca.gesrotes.domain.HorarioModulo;
@@ -66,5 +67,18 @@ public class HorarioServiceImpl implements HorarioService {
                 .collect(Collectors.toList());
         return HorarioMapper.toCreateHorarioResponse(modulo, horarios);
     }
+
+
+
+    @Override
+    public List<HorarioModulo> getHorariosModulos() {
+        try {
+            return horarioRepository.findAll();
+        } catch(Exception error) {
+            System.out.println("Se ha presentado un error : " + error);
+        }
+        return null;
+    }
+
 
 }
