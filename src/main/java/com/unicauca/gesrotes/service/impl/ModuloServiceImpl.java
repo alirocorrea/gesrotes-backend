@@ -1,5 +1,6 @@
 package com.unicauca.gesrotes.service.impl;
 
+import com.unicauca.gesrotes.dto.ModuloSinHorarioDTO;
 import org.springframework.stereotype.Service;
 
 import com.unicauca.gesrotes.domain.Modulo;
