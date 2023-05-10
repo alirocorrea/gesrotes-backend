@@ -1,5 +1,7 @@
 package com.unicauca.gesrotes.dto;
 
+import java.util.Date;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -8,5 +10,9 @@ import lombok.Data;
 public class HorarioDTO {
 
     private Long id;
-    private String descripcion;
+    //private String descripcion;
+
+    private String dia;
+    private Date horaInicio;
+    private Date horaFin;
 }

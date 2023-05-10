@@ -38,4 +38,7 @@ public class ModuloController {
     public ResponseEntity<ModuloSinHorarioDTO> horarioSinAsignar(@RequestParam Long id_docente, @RequestParam Long id_asignatura){
         return ResponseEntity.ok(moduloService.listarModulosSinHorarioAsignadoPorIdDocenteIdAsignatura(id_docente,id_asignatura));
     }
+
+    
+
 }

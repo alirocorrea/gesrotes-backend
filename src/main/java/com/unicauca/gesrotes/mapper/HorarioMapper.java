@@ -8,6 +8,7 @@ import com.unicauca.gesrotes.dto.HorarioDTO;
 import com.unicauca.gesrotes.dto.request.CreateHorarioRequest;
 import com.unicauca.gesrotes.dto.response.CreateHorarioResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -16,11 +17,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class HorarioMapper {
 
-    private HorarioMapper() {
-        throw new IllegalStateException(Constants.UTILITY_CLASS);
-    }
+    //private HorarioMapper() {
+      //  throw new IllegalStateException(Constants.UTILITY_CLASS);
+   // }
 
-    public static CreateHorarioResponse toCreateHorarioResponse (final Modulo modulo, final List<HorarioDTO> horarios) {
+    public  CreateHorarioResponse toCreateHorarioResponse (final Modulo modulo, final List<HorarioDTO> horarios) {
         return CreateHorarioResponse.builder()
                 .id(modulo.getId())
                 .nombre(modulo.getNombre())
@@ -29,16 +30,19 @@ public class HorarioMapper {
 
     }
 
-    public static HorarioDTO toHorarioDTO(final HorarioModulo horarioModulo) {
+    public  HorarioDTO toHorarioDTO(final HorarioModulo horarioModulo) {
         String horaInicio = Util.dateToFormato12horas(horarioModulo.getHoraInicio());
         String horaFin = Util.dateToFormato12horas(horarioModulo.getHoraFin());
         return HorarioDTO.builder()
                 .id(horarioModulo.getId())
-                .descripcion(Util.stringToCapitalize(horarioModulo.getDia()) + " " + horaInicio + " - " + horaFin)
+                //.descripcion(Util.stringToCapitalize(horarioModulo.getDia()) + " " + horaInicio + " - " + horaFin)
+                .dia(horarioModulo.getDia())
+                .horaInicio(horarioModulo.getHoraInicio())
+                .horaFin(horarioModulo.getHoraFin())
                 .build();
     }
 
-    public static HorarioModulo createHorario(final CreateHorarioRequest request) {
+    public HorarioModulo createHorario(final CreateHorarioRequest request) {
         return HorarioModulo.builder()
                 .dia(Util.validarDiaSemana(request.getDia()))
                 .horaInicio(Util.numeroHoraToDateHora(request.getHoraInicio()))
@@ -46,12 +50,26 @@ public class HorarioMapper {
                 .build();
     }
 
-    public CreateHorarioResponse domainToDTO(HorarioModulo horarioModulo) {
-        CreateHorarioResponse createHorarioResponse = new CreateHorarioResponse();
-        createHorarioResponse.setId(horarioModulo.getId());
-        createHorarioResponse.setNombre(horarioModulo.getNombre());
-        createHorarioResponse.setHorario(horarioModulo.getHorario());
-        return createHorarioResponse;
+    public HorarioDTO domainToDTO(HorarioModulo horarioModulo) {
+         HorarioDTO horarioDTO =  HorarioDTO.builder()
+        .id(horarioModulo.getId())
+        .dia(horarioModulo.getDia())
+        .horaInicio(horarioModulo.getHoraInicio())
+        .horaFin(horarioModulo.getHoraFin())
+        .build();
+        return horarioDTO;
+    }
+
+    public List<HorarioDTO>listDomainToListDTO(List<HorarioModulo> horarios){
+        List<HorarioDTO> horariosDtos = new ArrayList<HorarioDTO>();
+
+        for(HorarioModulo horarioModulo : horarios){
+            HorarioDTO horarioDTO = domainToDTO(horarioModulo);
+            horariosDtos.add(horarioDTO);
+
+        }
+        return horariosDtos;
+
     }
     
 

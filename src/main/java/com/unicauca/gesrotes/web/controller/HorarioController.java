@@ -32,6 +32,8 @@ public class HorarioController {
     
     @Autowired
     private HorarioService horariosService;
+    @Autowired
+    private HorarioMapper horarioMapper;
 
     @Operation(summary = "Eliminar horarios de un docente en una asignatura,")
     @DeleteMapping("/eliminar")
@@ -54,7 +56,7 @@ public class HorarioController {
     }
 
 
-    private final HorarioMapper horarioMapper;
+    
     
     @GetMapping("/listado")
     @Operation(summary = "Obtiene los horarios asociados a la asignatura")
@@ -63,7 +65,11 @@ public class HorarioController {
         List<HorarioModulo> horarios = this.horariosService.getHorariosModulos();
         List<CreateHorarioResponse> createHorarioResponses = new ArrayList<>();
         for (HorarioModulo horario : horarios) {
-            CreateHorarioResponse createHorarioResponse = this.horarioMapper.domainToDTO(horario);
+            CreateHorarioResponse createHorarioResponse = CreateHorarioResponse.builder()
+            .id(horario.getId())
+            .nombre(horario.getModulo().getNombre())
+            .horario(horarioMapper.listDomainToListDTO(horario.getModulo().getHorariosModulos()))
+            .build();
             createHorarioResponses.add(createHorarioResponse);
         }
         return ResponseEntity.ok(createHorarioResponses);
