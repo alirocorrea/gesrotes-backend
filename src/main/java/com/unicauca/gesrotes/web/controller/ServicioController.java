@@ -1,5 +1,6 @@
 package com.unicauca.gesrotes.web.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +14,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
+@Tag(name = "Servicios Controller", description = "Servicios relacionados con los servicios")
 @RestController
-@RequestMapping("/api/Servicios")
+@RequestMapping("/api/servicios")
 public class ServicioController {
 
     @Autowired
