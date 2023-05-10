@@ -1,5 +1,7 @@
 package com.unicauca.gesrotes.dto;
 
+import java.util.List;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -9,8 +11,9 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-public class HorarioDTO {
+public class DocenteDTO {
 
     private Long id;
-    private String descripcion;
+    private String nombre;
+    private List<ModuloDTO> modulo;
 }

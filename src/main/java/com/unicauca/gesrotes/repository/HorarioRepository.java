@@ -12,4 +12,6 @@ public interface HorarioRepository extends JpaRepository<HorarioModulo, Long> {
 
     @Query("SELECT h FROM HorarioModulo h WHERE h.modulo.id = ?1")
     List<HorarioModulo> getHorariosByIdModulo(final Long idModulo);
+
+
 }

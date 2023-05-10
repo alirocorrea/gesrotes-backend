@@ -9,7 +9,7 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-public class HorarioDTO {
+public class HorarioModuloDTO {
 
     private Long id;
     private String descripcion;
