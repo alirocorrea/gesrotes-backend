@@ -1,10 +1,6 @@
 package com.unicauca.gesrotes.mapper;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.unicauca.gesrotes.common.Constants;
-import com.unicauca.gesrotes.domain.Escenario;
 import com.unicauca.gesrotes.domain.Servicio;
 import com.unicauca.gesrotes.dto.response.ServicioResponse;;
 

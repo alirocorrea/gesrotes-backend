@@ -2,7 +2,6 @@ package com.unicauca.gesrotes.mapper;
 
 import com.unicauca.gesrotes.common.Constants;
 import com.unicauca.gesrotes.dto.response.EscenariosResponse;
-import lombok.Getter;
 import com.unicauca.gesrotes.domain.Escenario;
 
 public final class EscenariosMapper {

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.unicauca.gesrotes.domain.Modulo;
 import com.unicauca.gesrotes.domain.Docente;
-import com.unicauca.gesrotes.domain.Modulo;
 import com.unicauca.gesrotes.dto.request.ModuloRequest;
 import com.unicauca.gesrotes.dto.ModuloDTO;
 import com.unicauca.gesrotes.dto.response.ModuloResponse;
@@ -15,9 +14,6 @@ import com.unicauca.gesrotes.repository.DocenteRepository;
 import com.unicauca.gesrotes.repository.ModuloRepository;
 import com.unicauca.gesrotes.service.ModuloService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.stream.Collectors;
