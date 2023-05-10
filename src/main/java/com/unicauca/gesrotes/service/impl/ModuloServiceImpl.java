@@ -1,12 +1,14 @@
 package com.unicauca.gesrotes.service.impl;
 
+import org.springframework.stereotype.Service;
 
+import com.unicauca.gesrotes.domain.Modulo;
 import com.unicauca.gesrotes.domain.Docente;
 import com.unicauca.gesrotes.domain.Modulo;
 import com.unicauca.gesrotes.dto.request.ModuloRequest;
 import com.unicauca.gesrotes.dto.ModuloDTO;
 import com.unicauca.gesrotes.dto.response.ModuloResponse;
-import com.unicauca.gesrotes.dto.ModuloSinHorarioDTO;
+import com.unicauca.gesrotes.exception.ApplicationException;
 import com.unicauca.gesrotes.mapper.ModuloMapper;
 import com.unicauca.gesrotes.repository.DocenteRepository;
 import com.unicauca.gesrotes.repository.ModuloRepository;
@@ -28,15 +30,12 @@ public class ModuloServiceImpl implements ModuloService{
     @Override
     public ModuloResponse registrarNombreModulo(ModuloRequest moduloRequest, long idDocente) {
         if(!docenteExiste(idDocente)){
-            throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "El Docente no existe"
-            );
+            
+            throw new ApplicationException("El Docente no existe");
         }
         Docente varDocente=docentesRepository.findById(idDocente).orElse(null);
         if (!esValidoNombre(moduloRequest)) {
-            throw new ResponseStatusException(
-                HttpStatus.CONFLICT, "El nombre de Modulo ya existe"
-            );
+            throw new ApplicationException("El Nombre de Modulo no es valido");
         }
         Modulo modulo = ModuloMapper.mapearEntidadNombre(moduloRequest);
         modulo.setDocente(varDocente);
