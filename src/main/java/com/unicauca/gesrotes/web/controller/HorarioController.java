@@ -2,6 +2,7 @@ package com.unicauca.gesrotes.web.controller;
 import com.unicauca.gesrotes.dto.request.CreateHorarioRequest;
 import com.unicauca.gesrotes.dto.response.CreateHorarioResponse;
 import com.unicauca.gesrotes.service.HorarioService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class HorarioController {
     @Autowired
     private HorarioService horariosService;
 
+    @Operation(summary = "Eliminar horarios de un docente en una asignatura,")
     @DeleteMapping("/eliminar")
     public ResponseEntity<String> eliminarHorario(@RequestParam("id_horariosmodulos") Long id_horariosmodulos) {
         try {
@@ -38,6 +40,7 @@ public class HorarioController {
         }
     }
 
+    @Operation(summary = "Configurar un horario")
     @PostMapping("/configurar_horario")
     public ResponseEntity<CreateHorarioResponse> createHorario (@RequestParam("id_modulo") final Long idModulo,
                                                                 @RequestBody @Valid final CreateHorarioRequest request) {
