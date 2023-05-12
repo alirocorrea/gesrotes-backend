@@ -2,6 +2,7 @@ package com.unicauca.gesrotes.web.controller;
 
 import com.unicauca.gesrotes.dto.request.ModuloRequest;
 import com.unicauca.gesrotes.dto.response.ModuloResponse;
+import com.unicauca.gesrotes.dto.DocenteModuloDTO;
 import com.unicauca.gesrotes.dto.ModuloSinHorarioDTO;
 import com.unicauca.gesrotes.service.ModuloService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -37,5 +38,11 @@ public class ModuloController {
     @Operation(summary = "HU01 modulos a los que no se le han asignado horarios")
     public ResponseEntity<ModuloSinHorarioDTO> horarioSinAsignar(@RequestParam Long id_docente, @RequestParam Long id_asignatura){
         return ResponseEntity.ok(moduloService.listarModulosSinHorarioAsignadoPorIdDocenteIdAsignatura(id_docente,id_asignatura));
+    }
+
+    @GetMapping("/listarHorarios")
+    @Operation(summary = "Docentes y horarios a. Listar los docentes asociados a una asignatura ")
+    public ResponseEntity<DocenteModuloDTO> listarHorarios(@RequestParam("id_asignatura") Long idAsignatura) {
+        return ResponseEntity.ok(moduloService.listarHorarios(idAsignatura));
     }
 }
