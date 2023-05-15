@@ -7,6 +7,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AsignacionController {
 
     private AsignacionService asignacionService;
+
+    @GetMapping("/listar/{idAsignatura}")
+    public ResponseEntity<Object> getListAsignaciones(@PathVariable final Long idAsignatura) {
+        return ResponseEntity.ok(asignacionService.getListAsignaciones(idAsignatura));
+    }
 
     @Operation(summary = "Eliminar asignaciones existentes para un ciclo y un grupo")
     @DeleteMapping("/eliminar_todas")

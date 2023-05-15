@@ -6,6 +6,8 @@ import com.unicauca.gesrotes.dto.request.ModuloRequest;
 import com.unicauca.gesrotes.dto.response.ModuloResponse;
 import com.unicauca.gesrotes.dto.ModuloDTO;
 
+import java.util.ArrayList;
+
 public final class ModuloMapper {
     
     private ModuloMapper() {
@@ -29,6 +31,7 @@ public final class ModuloMapper {
         return ModuloDTO.builder()
                 .id(modulo.getId())
                 .nombre(modulo.getNombre())
+                .horarios(new ArrayList<>())
                 .build();
     }
 

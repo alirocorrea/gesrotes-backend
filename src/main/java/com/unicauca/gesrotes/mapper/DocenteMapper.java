@@ -48,6 +48,7 @@ public final class DocenteMapper {
         return DocenteDTO.builder()
                 .id(docente.getId())
                 .nombre(docente.getPersona().getNombre()+ " " + docente.getPersona().getApellido())
+                .modulos(new ArrayList<>())
                 .build();
     }
 

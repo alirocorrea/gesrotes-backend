@@ -15,5 +15,5 @@ public class ModuloDTO {
 
     private Long id;
     private String nombre;
-    private List<HorarioDTO> horario;
+    private List<HorarioDTO> horarios;
 }

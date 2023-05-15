@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 import com.unicauca.gesrotes.domain.Escenario;
 import com.unicauca.gesrotes.repository.EscenarioRepository;
 
-import lombok.RequiredArgsConstructor;
-
 @AllArgsConstructor
 @Service
 public class EscenarioServiceImpl implements EscenarioService {

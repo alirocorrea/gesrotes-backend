@@ -2,9 +2,6 @@ package com.unicauca.gesrotes.web.controller;
 
 import com.unicauca.gesrotes.domain.Asignatura;
 import com.unicauca.gesrotes.domain.Grupo;
-import com.unicauca.gesrotes.dto.request.CicloRequest;
-import com.unicauca.gesrotes.dto.response.CicloResponseList;
-import com.unicauca.gesrotes.repository.GrupoRepository;
 import com.unicauca.gesrotes.service.GrupoService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;

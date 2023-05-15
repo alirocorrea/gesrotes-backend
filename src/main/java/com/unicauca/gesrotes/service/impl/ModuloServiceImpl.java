@@ -87,10 +87,10 @@ public class ModuloServiceImpl implements ModuloService{
                     .map(HorarioMapper::toHorarioDTO)
                     .collect(Collectors.toList());
 
-                    mdl.setHorario(horarios);
+                    mdl.setHorarios(horarios);
                 }
                 
-                dct.setModulo(modulos);
+                dct.setModulos(modulos);
             }
             docente_modulo.setDocente(docentes);
         return docente_modulo;
