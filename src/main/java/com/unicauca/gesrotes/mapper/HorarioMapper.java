@@ -21,7 +21,7 @@ public class HorarioMapper {
       //  throw new IllegalStateException(Constants.UTILITY_CLASS);
    // }
 
-    public  CreateHorarioResponse toCreateHorarioResponse (final Modulo modulo, final List<HorarioDTO> horarios) {
+    public static CreateHorarioResponse toCreateHorarioResponse (final Modulo modulo, final List<HorarioDTO> horarios) {
         return CreateHorarioResponse.builder()
                 .id(modulo.getId())
                 .nombre(modulo.getNombre())
@@ -30,9 +30,9 @@ public class HorarioMapper {
 
     }
 
-    public  HorarioDTO toHorarioDTO(final HorarioModulo horarioModulo) {
-        String horaInicio = Util.dateToFormato12horas(horarioModulo.getHoraInicio());
-        String horaFin = Util.dateToFormato12horas(horarioModulo.getHoraFin());
+    public static HorarioDTO toHorarioDTO(final HorarioModulo horarioModulo) {
+       // String horaInicio = Util.dateToFormato12horas(horarioModulo.getHoraInicio());
+        //String horaFin = Util.dateToFormato12horas(horarioModulo.getHoraFin());
         return HorarioDTO.builder()
                 .id(horarioModulo.getId())
                 //.descripcion(Util.stringToCapitalize(horarioModulo.getDia()) + " " + horaInicio + " - " + horaFin)
@@ -42,7 +42,7 @@ public class HorarioMapper {
                 .build();
     }
 
-    public HorarioModulo createHorario(final CreateHorarioRequest request) {
+    public static HorarioModulo createHorario(final CreateHorarioRequest request) {
         return HorarioModulo.builder()
                 .dia(Util.validarDiaSemana(request.getDia()))
                 .horaInicio(Util.numeroHoraToDateHora(request.getHoraInicio()))
