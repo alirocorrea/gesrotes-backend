@@ -13,4 +13,6 @@ public class CreateHorarioResponse {
     private Long id;
     private String nombre;
     private List<HorarioDTO> horario;
+    private String nombreEscenario;
+    private String descripcion;
 }

@@ -7,7 +7,7 @@ import com.unicauca.gesrotes.dto.response.AsignaturasResponse;
 
 @Component
 public class AsignaturaMapper {
-    public static AsignaturasResponse domainToDTO(Asignatura asignatura){
+    public  AsignaturasResponse domainToDTO(Asignatura asignatura){
         AsignaturasResponse asignaturaResponse = new AsignaturasResponse();
         asignaturaResponse.setIdPrograma(asignatura.getPrograma().getId());
         asignaturaResponse.setNombrePrograma(asignatura.getPrograma().getNombre());

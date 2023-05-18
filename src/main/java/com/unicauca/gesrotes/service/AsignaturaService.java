@@ -6,6 +6,6 @@ import com.unicauca.gesrotes.dto.response.AsignaturasResponse;
 
 public interface AsignaturaService {
 
-    List<AsignaturasResponse> getAsignaturas();
+    List<AsignaturasResponse> getAsignaturas(Long id_programa);
 }
     

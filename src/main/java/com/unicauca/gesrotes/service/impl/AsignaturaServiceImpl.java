@@ -19,13 +19,14 @@ import lombok.AllArgsConstructor;
 public class AsignaturaServiceImpl implements AsignaturaService{
 
     private final AsignaturaRepository repository;
+    private final AsignaturaMapper mapper;
 
     @Override
-    public List<AsignaturasResponse> getAsignaturas() {
-        List<Asignatura> asignaturas = repository.findAll();
+    public List<AsignaturasResponse> getAsignaturas(Long id_programa) {
+        List<Asignatura> asignaturas = repository.findAllByProgramaId(id_programa);
         List<AsignaturasResponse> asignaturasResponses = new ArrayList<>();
         for (Asignatura asignatura : asignaturas) {
-            AsignaturasResponse asignaturasResponse = AsignaturaMapper.domainToDTO(asignatura);
+            AsignaturasResponse asignaturasResponse = mapper.domainToDTO(asignatura);
             asignaturasResponses.add(asignaturasResponse);                  
         }
         return asignaturasResponses;

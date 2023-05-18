@@ -8,7 +8,7 @@ import com.unicauca.gesrotes.domain.Escenario;
 @Component
 public class EscenariosMapper {
    
-    public static EscenariosResponse domainToDTO(Escenario escenario) {
+    public  EscenariosResponse domainToDTO(Escenario escenario) {
         EscenariosResponse escenarioResponse = new EscenariosResponse();
         escenarioResponse.setId(escenario.getId());
         escenarioResponse.setNombre(escenario.getNombre());

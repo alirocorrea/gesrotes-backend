@@ -31,7 +31,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/servicios")
+@RequestMapping("/api/escenarios")
 @Tag(name = "Escenarios Controller", description = "Servicios comunes")
 @CrossOrigin(origins = "*")
 public class EscenarioController {

@@ -60,6 +60,7 @@ public class HorarioController {
     
     @GetMapping("/listado")
     @Operation(summary = "Obtiene los horarios asociados a la asignatura")
+    
     public ResponseEntity<List<CreateHorarioResponse>> getHorariosModulos() {
         
         List<HorarioModulo> horarios = this.horariosService.getHorariosModulos();
@@ -69,6 +70,8 @@ public class HorarioController {
             .id(horario.getId())
             .nombre(horario.getModulo().getNombre())
             .horario(horarioMapper.listDomainToListDTO(horario.getModulo().getHorariosModulos()))
+            .nombreEscenario(horario.getEscenario().getNombre())
+            .descripcion(horario.getServicio().getDescripcion())
             .build();
             createHorarioResponses.add(createHorarioResponse);
         }
