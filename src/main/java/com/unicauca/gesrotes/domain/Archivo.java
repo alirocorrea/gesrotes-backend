@@ -10,17 +10,17 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "Documentos")
-public class Documento {
+@Table(name = "Archivo")
+public class Archivo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_documento")
+    @Column(name = "id_Archivo")
     private Long id;
     private String nombre;
     private String extension;
-    private String hash;
-    @OneToMany(mappedBy = "documento", cascade = CascadeType.ALL)
+    private String uuid;
+    @OneToMany(mappedBy = "archivo", cascade = CascadeType.ALL)
     private List<DocumentoEscenario> documentosEscenario;
 
     public void agregarDocumentosEscenarios(DocumentoEscenario documentoEscenario){
