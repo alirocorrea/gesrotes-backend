@@ -8,6 +8,5 @@ import lombok.Data;
 public class DocenteResponse {
     private Long id;
     private String nombre;
-    //private String ruta_foto;
     private String info;
 }

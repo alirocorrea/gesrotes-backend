@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @AllArgsConstructor
 @Tag(name = "Ciclo Controller" , description = "Servicios relacionados con los ciclos")
 @RestController
-@RequestMapping("/ciclos")
+@RequestMapping("/api/ciclos")
 public class CicloController {
     
     private CicloService cicloServicio;

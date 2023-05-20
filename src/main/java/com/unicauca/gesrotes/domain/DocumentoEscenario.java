@@ -14,13 +14,18 @@ public class DocumentoEscenario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_DocumentosEscenarios")
     private Long id;
     private Date vigencia;
-    private Boolean activo;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_id_escenariosdocesc")
+    @JoinColumn(name = "fk_id_EscenariosDocEsc")
     private Escenario escenario;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_id_documento")
-    private Documento documento;
+    @JoinColumn(name = "fk_id_Archivo")
+    private Archivo archivo;
+    private String tipoDocumento;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "fechaSubida")
+    private Date fechaSubida;
+    private Long tamano;
 }

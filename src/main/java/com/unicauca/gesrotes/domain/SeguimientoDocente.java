@@ -13,9 +13,12 @@ public class SeguimientoDocente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_SeguimientosDocentes")
     private Long id;
-    private String observacion;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_id_docentes")
+    @JoinColumn(name = "fk_id_Docentes")
     private Docente docente;
+
+    private String observacion;
 }

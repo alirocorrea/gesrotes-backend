@@ -6,6 +6,8 @@ import java.util.List;
 import com.unicauca.gesrotes.common.Constants;
 import com.unicauca.gesrotes.domain.Docente;
 import com.unicauca.gesrotes.domain.Modulo;
+import com.unicauca.gesrotes.dto.DocenteDTO;
+import com.unicauca.gesrotes.dto.response.DocenteModuloResponse;
 import com.unicauca.gesrotes.dto.response.DocenteResponse;
 
 public final class DocenteMapper {
@@ -40,6 +42,14 @@ public final class DocenteMapper {
         .nombre(docente.getPersona().getNombre()+ " " + docente.getPersona().getApellido())
         .info(varInfo)
         .build();
+    }
+
+    public static DocenteDTO mapearResponseDocenteModuloResponse(Docente docente) {
+        return DocenteDTO.builder()
+                .id(docente.getId())
+                .nombre(docente.getPersona().getNombre()+ " " + docente.getPersona().getApellido())
+                .modulos(new ArrayList<>())
+                .build();
     }
 
 }
