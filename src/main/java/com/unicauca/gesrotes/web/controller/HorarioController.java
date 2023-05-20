@@ -1,5 +1,7 @@
 package com.unicauca.gesrotes.web.controller;
 import com.unicauca.gesrotes.domain.HorarioModulo;
+import com.unicauca.gesrotes.dto.HorarioDTO;
+import com.unicauca.gesrotes.dto.HorarioModuloDTO;
 import com.unicauca.gesrotes.dto.request.CreateHorarioRequest;
 import com.unicauca.gesrotes.dto.response.CreateHorarioResponse;
 import com.unicauca.gesrotes.mapper.HorarioMapper;
@@ -60,22 +62,12 @@ public class HorarioController {
     
     @GetMapping("/listado")
     @Operation(summary = "Obtiene los horarios asociados a la asignatura")
-    
-    public ResponseEntity<List<CreateHorarioResponse>> getHorariosModulos() {
-        
-        List<HorarioModulo> horarios = this.horariosService.getHorariosModulos();
-        List<CreateHorarioResponse> createHorarioResponses = new ArrayList<>();
-        for (HorarioModulo horario : horarios) {
-            CreateHorarioResponse createHorarioResponse = CreateHorarioResponse.builder()
-            .id(horario.getId())
-            .nombre(horario.getModulo().getNombre())
-            .horario(horarioMapper.listDomainToListDTO(horario.getModulo().getHorariosModulos()))
-            .nombreEscenario(horario.getEscenario().getNombre())
-            .descripcion(horario.getServicio().getDescripcion())
-            .build();
-            createHorarioResponses.add(createHorarioResponse);
-        }
-        return ResponseEntity.ok(createHorarioResponses);
+
+    public ResponseEntity<List<HorarioModuloDTO>>  getHorariosModulos(@RequestParam("id_docente")Long id_docente, @RequestParam("id_asignatura")Long id_asignatura){
+
+        List<HorarioModuloDTO> createHorarioResponse = this.horariosService.getHorariosModulos(id_docente, id_asignatura);
+        return ResponseEntity.ok(createHorarioResponse);
+
     }
 
 

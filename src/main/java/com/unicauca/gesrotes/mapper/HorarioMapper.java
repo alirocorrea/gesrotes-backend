@@ -5,6 +5,7 @@ import com.unicauca.gesrotes.common.Util;
 import com.unicauca.gesrotes.domain.HorarioModulo;
 import com.unicauca.gesrotes.domain.Modulo;
 import com.unicauca.gesrotes.dto.HorarioDTO;
+import com.unicauca.gesrotes.dto.HorarioModuloDTO;
 import com.unicauca.gesrotes.dto.request.CreateHorarioRequest;
 import com.unicauca.gesrotes.dto.response.CreateHorarioResponse;
 
@@ -34,7 +35,7 @@ public class HorarioMapper {
        // String horaInicio = Util.dateToFormato12horas(horarioModulo.getHoraInicio());
         //String horaFin = Util.dateToFormato12horas(horarioModulo.getHoraFin());
         return HorarioDTO.builder()
-                .id(horarioModulo.getId())
+                //.id(horarioModulo.getId())
                 //.descripcion(Util.stringToCapitalize(horarioModulo.getDia()) + " " + horaInicio + " - " + horaFin)
                 .dia(horarioModulo.getDia())
                 .horaInicio(horarioModulo.getHoraInicio())
@@ -59,7 +60,8 @@ public class HorarioMapper {
         .build();
         return horarioDTO;
     }
-
+    
+    /* 
     public List<HorarioDTO>listDomainToListDTO(List<HorarioModulo> horarios){
         List<HorarioDTO> horariosDtos = new ArrayList<HorarioDTO>();
 
@@ -71,7 +73,20 @@ public class HorarioMapper {
         return horariosDtos;
 
     }
-    
+    */
+    public HorarioModuloDTO horarioModuloToDTO(HorarioModulo horarioModulo) {
+        HorarioModuloDTO horarioModuloDTO =  HorarioModuloDTO.builder()
+        .nombreModulo(horarioModulo.getModulo().getNombre())
+       .codigoAsignatura(horarioModulo.getModulo().getDocente().getAsignaturas().get(0).getCodigo())
+       .descripcionAsignatura(horarioModulo.getModulo().getDocente().getAsignaturas().get(0).getDescripcion())
+       .dia(horarioModulo.getDia())
+       .horaInicio(horarioModulo.getHoraInicio())
+       .horaFin(horarioModulo.getHoraFin())
+       .nombreEscenario(horarioModulo.getEscenario().getNombre())
+       .descripcionServicio(horarioModulo.getServicio().getDescripcion())
+       .build();
+       return horarioModuloDTO;
+   }
 
 
 }

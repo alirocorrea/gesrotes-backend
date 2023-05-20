@@ -1,4 +1,5 @@
 package com.unicauca.gesrotes.service.impl;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -8,6 +9,7 @@ import com.unicauca.gesrotes.domain.Escenario;
 import com.unicauca.gesrotes.domain.Modulo;
 import com.unicauca.gesrotes.domain.Servicio;
 import com.unicauca.gesrotes.dto.HorarioDTO;
+import com.unicauca.gesrotes.dto.HorarioModuloDTO;
 import com.unicauca.gesrotes.dto.request.CreateHorarioRequest;
 import com.unicauca.gesrotes.dto.response.CreateHorarioResponse;
 import com.unicauca.gesrotes.exception.ApplicationException;
@@ -17,7 +19,9 @@ import com.unicauca.gesrotes.repository.ModuloRepository;
 import com.unicauca.gesrotes.repository.ServicioRepository;
 import com.unicauca.gesrotes.service.HorarioService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
+import org.apache.catalina.mapper.Mapper;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 import com.unicauca.gesrotes.domain.HorarioModulo;
@@ -25,13 +29,14 @@ import com.unicauca.gesrotes.repository.HorarioRepository;
 
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class HorarioServiceImpl implements HorarioService {
 
-    private  HorarioRepository horarioRepository;
-    private ModuloRepository moduloRepository;
-    private ServicioRepository servicioRepository;
-    private EscenarioRepository escenarioRepository;
+    private final HorarioRepository horarioRepository;
+    private final ModuloRepository moduloRepository;
+    private final ServicioRepository servicioRepository;
+    private final EscenarioRepository escenarioRepository;
+    private final HorarioMapper horarioMapper;
 
     @Override
     public void eliminarHorarioporId(long id_horariosmodulos) throws NotFoundException{
@@ -69,9 +74,9 @@ public class HorarioServiceImpl implements HorarioService {
     }
 
 
-
+    /* 
     @Override
-    public List<HorarioModulo> getHorariosModulos() {
+    public List<HorarioModulo> getHorariosModulos(Long id_docente, Long id_asignatura) {
         try {
             return horarioRepository.findAll();
         } catch(Exception error) {
@@ -79,6 +84,19 @@ public class HorarioServiceImpl implements HorarioService {
         }
         return null;
     }
+    */
+
+    @Override
+    public List<HorarioModuloDTO> getHorariosModulos(Long id_docente, Long id_asignatura) {
+        List<HorarioModulo> horarios = horarioRepository.findAllByDocenteAsignatura(id_docente, id_asignatura);
+        List<HorarioModuloDTO> horariosDTO = new ArrayList<>();
+        for(HorarioModulo horario : horarios) {
+            horariosDTO.add(horarioMapper.horarioModuloToDTO(horario));
+        }
+        return horariosDTO;
+    }
+
+
 
 
 }

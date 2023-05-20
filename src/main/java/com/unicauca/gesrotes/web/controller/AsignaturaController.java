@@ -1,6 +1,5 @@
 
 package com.unicauca.gesrotes.web.controller;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -10,16 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.unicauca.gesrotes.domain.Asignatura;
 import com.unicauca.gesrotes.dto.response.AsignaturasResponse;
-import com.unicauca.gesrotes.mapper.AsignaturaMapper;
 import com.unicauca.gesrotes.service.AsignaturaService;
 
-import io.swagger.v3.core.util.Constants;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.info.Info;
-import io.swagger.v3.oas.annotations.servers.Server;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 

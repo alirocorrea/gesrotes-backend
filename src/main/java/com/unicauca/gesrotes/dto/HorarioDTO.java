@@ -10,9 +10,9 @@ import lombok.Data;
 public class HorarioDTO {
 
     private Long id;
-    //private String descripcion;
 
     private String dia;
     private Date horaInicio;
     private Date horaFin;
+    
 }
