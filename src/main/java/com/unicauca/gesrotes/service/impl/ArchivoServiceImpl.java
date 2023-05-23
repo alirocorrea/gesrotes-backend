@@ -28,6 +28,14 @@ public class ArchivoServiceImpl implements ArchivoService {
 
     @Override
     public String editarArchivo(Long id_archivo , MultipartFile file, String datosEditar) {
+        /*
+        {
+          "nombre": "nombre del archivo",
+          "tipoArchivo": "pdf",
+          "fechaVigencia": "2023-06-30",
+          "tipoDeDocumento": "Plan de prácticas"
+        }
+        * */
         try{
             //obtener el documentoescenario para poder comparar mediante el id_archivo asociado a este
             DocumentoEscenario documentoEscenario = documentoEscenarioRepository.buscarPorIdArchivo(id_archivo);
@@ -35,13 +43,16 @@ public class ArchivoServiceImpl implements ArchivoService {
             //obtenemos los datos enviados desde front
             ObjetoArchivoRequest obj = (ObjetoArchivoRequest) jsonAObjeto(datosEditar);
 //falta empezar a comparar y subir los cambios.
-            //obtengo por id el archivo que esta en la base de datos
-            Archivo archivo = archivoRepository.findById(id_archivo).get();
+            documentoEscenario.getArchivo().getNombre();
+            documentoEscenario.getArchivo().getExtension(); //tipo de archivo
+            documentoEscenario.getVigencia();
+            documentoEscenario.getTipoDocumento();
+
             //cargo el archivo a bytes el que estan enviando desde el front
             byte [] archivoEditado = file.getBytes();
-            if(archivo.getUuid() != null){
+            if(documentoEscenario.getArchivo() != null){
                 //obtengo el archivo por uuid el archivo que esta en el storage
-                byte[] archivoOriginal = storageService.getFile(archivo.getUuid());
+                byte[] archivoOriginal = storageService.getFile(documentoEscenario.getArchivo().getUuid());
                 if(!Arrays.equals(archivoOriginal, archivoEditado)){ //evaluo si son diferentes
                     //si es diferente sobre escribo los bytes con el mismo uuid
                     //metodo por hacer
