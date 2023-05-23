@@ -45,6 +45,26 @@ public class StorageServiceImpl implements StorageService {
         }
     }
 
+    @Override
+    public boolean updateFile(final String uuid, final byte[] newContentFile) {
+        try {
+            if(!existFile(uuid)) { return Boolean.FALSE; }
+            requestSaveFile(uuid, newContentFile);
+            return Boolean.TRUE;
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
+    }
+
+    private boolean existFile(final String uuid) {
+        try {
+            requestHeadFile(uuid);
+            return Boolean.TRUE;
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
+    }
+
     private ResponseEntity<byte[]> requestGetFile(final String uuid) {
         final String url = this.storageURL.concat(uuid);
         return restTemplate.exchange(
@@ -64,4 +84,14 @@ public class StorageServiceImpl implements StorageService {
             Void.class
         );
 	}
+
+    private void requestHeadFile(final String uuid) {
+        final String url = this.storageURL.concat(uuid);
+        restTemplate.exchange(
+            url,
+            HttpMethod.HEAD,
+            null,
+            Void.class
+        );
+    }
 }
