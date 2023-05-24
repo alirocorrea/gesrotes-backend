@@ -22,8 +22,7 @@ public class ArchivoController {
 
     @Operation(summary = "HE05-HU02 editar un archivo")
     @PutMapping("/editar")
-    public ResponseEntity<String> actualizarArchivo(@RequestParam Long id_documento, @RequestParam("file") MultipartFile file,@ModelAttribute(name = "datosEditar") String datosEditar){//
-        archivoService.editarArchivo(id_documento,file,datosEditar);
-        return new ResponseEntity<>("ok", HttpStatus.ACCEPTED);
+    public ResponseEntity<String> actualizarArchivo(@RequestParam Long id_documento, @RequestParam("file") MultipartFile file,@ModelAttribute(name = "datosEditar") String datosEditar){
+        return new ResponseEntity<>(archivoService.editarArchivo(id_documento,file,datosEditar), HttpStatus.ACCEPTED);
     }
 }
