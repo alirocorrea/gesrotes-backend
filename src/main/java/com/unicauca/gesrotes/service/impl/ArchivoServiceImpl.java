@@ -32,21 +32,13 @@ public class ArchivoServiceImpl implements ArchivoService {
 
     @Override
     public String editarArchivo(Long id_archivo , MultipartFile file, String datosEditar) {
-        /*
-        {
-          "nombre": "nombre del archivo",
-          "tipoArchivo": "pdf",
-          "fechaVigencia": "2023-06-30",
-          "tipoDeDocumento": "Plan de prácticas"
-        }
-        * */
         try{
             //obtener el documentoescenario para poder comparar mediante el id_archivo asociado a este
             DocumentoEscenario documentoEscenario = documentoEscenarioRepository.buscarPorIdArchivo(id_archivo);
             //obtenemos los datos enviados desde front
             ObjetoArchivoRequest obj = (ObjetoArchivoRequest) jsonAObjeto(datosEditar);
 //falta empezar a comparar y subir los cambios.
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date fechaVigen = formatter.parse(obj.getFechaVigencia());
 
             if(!documentoEscenario.getArchivo().getNombre().equals(obj.getNombre()) || !documentoEscenario.getArchivo().getExtension().equals(obj.getTipoArchivo())
@@ -55,6 +47,8 @@ public class ArchivoServiceImpl implements ArchivoService {
                 documentoEscenario.getArchivo().setExtension(obj.getTipoArchivo());
                 documentoEscenario.setVigencia(fechaVigen);
                 documentoEscenario.setTipoDocumento(obj.getTipoDeDocumento());
+                documentoEscenario.setFechaSubida(new Date());
+                documentoEscenario.setTamano(file.getSize() / 1024);
                 documentoEscenarioRepository.save(documentoEscenario);
             }
             //cargo el archivo a bytes el que estan enviando desde el front
