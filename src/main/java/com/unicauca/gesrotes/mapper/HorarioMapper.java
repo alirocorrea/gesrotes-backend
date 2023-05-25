@@ -35,7 +35,7 @@ public class HorarioMapper {
        // String horaInicio = Util.dateToFormato12horas(horarioModulo.getHoraInicio());
         //String horaFin = Util.dateToFormato12horas(horarioModulo.getHoraFin());
         return HorarioDTO.builder()
-                //.id(horarioModulo.getId())
+                .id(horarioModulo.getId())
                 //.descripcion(Util.stringToCapitalize(horarioModulo.getDia()) + " " + horaInicio + " - " + horaFin)
                 .dia(horarioModulo.getDia())
                 .horaInicio(horarioModulo.getHoraInicio())
@@ -61,19 +61,7 @@ public class HorarioMapper {
         return horarioDTO;
     }
     
-    /* 
-    public List<HorarioDTO>listDomainToListDTO(List<HorarioModulo> horarios){
-        List<HorarioDTO> horariosDtos = new ArrayList<HorarioDTO>();
 
-        for(HorarioModulo horarioModulo : horarios){
-            HorarioDTO horarioDTO = domainToDTO(horarioModulo);
-            horariosDtos.add(horarioDTO);
-
-        }
-        return horariosDtos;
-
-    }
-    */
     public HorarioModuloDTO horarioModuloToDTO(HorarioModulo horarioModulo) {
         HorarioModuloDTO horarioModuloDTO =  HorarioModuloDTO.builder()
         .nombreModulo(horarioModulo.getModulo().getNombre())

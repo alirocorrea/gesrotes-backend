@@ -61,7 +61,7 @@ public class HorarioController {
     
     
     @GetMapping("/listado")
-    @Operation(summary = "Obtiene los horarios asociados a la asignatura")
+    @Operation(summary = "Obtiene los horarios asociados a la asignatura y al docente")
 
     public ResponseEntity<List<HorarioModuloDTO>>  getHorariosModulos(@RequestParam("id_docente")Long id_docente, @RequestParam("id_asignatura")Long id_asignatura){
 
@@ -69,7 +69,6 @@ public class HorarioController {
         return ResponseEntity.ok(createHorarioResponse);
 
     }
-
 
 }
 
