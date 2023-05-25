@@ -46,16 +46,11 @@ public class DocumentoServiceImpl implements DocumentoService{
         Archivo archivoObj = ArchivoMapper.mapearEntidad(documentoRequest, uiid);
         //Guardar DocumentoEscenario
         DocumentoEscenario docEscenarioObj = DocumentoEscenarioMapper.mapearEntidad(documentoRequest, file.getSize());
-        
+         
         archivoObj.agregarDocumentosEscenarios(docEscenarioObj);
         docEscenarioObj.setEscenario(varEscenario);
         docEscenarioObj.setArchivo(archivoObj);
         
-
-        
-        System.out.println("********************Post-set cosas");
-        System.out.println("Saved uiid:"+archivoObj.getUuid());
-        System.out.println("Id de la BD docEscenario:"+docEscenarioObj.getId());
 
 
         archivoRepository.save(archivoObj);

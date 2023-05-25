@@ -22,6 +22,7 @@ public class DocumentoEscenario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_DocumentosEscenarios")
     private Long id;
+    
     private Date vigencia;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_id_EscenariosDocEsc")
