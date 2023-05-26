@@ -40,7 +40,6 @@ public class ArchivoServiceImpl implements ArchivoService {
 //falta empezar a comparar y subir los cambios.
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date fechaVigen = formatter.parse(obj.getFechaVigencia());
-
             if(!documentoEscenario.getArchivo().getNombre().equals(obj.getNombre()) || !documentoEscenario.getArchivo().getExtension().equals(obj.getTipoArchivo())
                     || !documentoEscenario.getVigencia().equals(fechaVigen) || !documentoEscenario.getTipoDocumento().equals(obj.getTipoArchivo())){
                 documentoEscenario.getArchivo().setNombre(obj.getNombre());
