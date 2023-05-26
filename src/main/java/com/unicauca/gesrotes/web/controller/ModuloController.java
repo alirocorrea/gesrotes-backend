@@ -26,10 +26,10 @@ public class ModuloController {
     private ModuloService moduloService;
 
     @Operation(summary = "Registrar un nombre para un nuevo horario")
-    @PostMapping("/crear/{id_docente}/{id_asignatura}")
+    @PostMapping("/crear/")
     public ModuloResponse registrarNombreModulo(@RequestBody ModuloRequest moduloRequest, 
-                                                @PathVariable("id_docente") String id_docente,
-                                                @PathVariable("id_asignatura") String id_asignatura) {
+                                                @RequestParam("id_docente") String id_docente,
+                                                @RequestParam("id_asignatura") String id_asignatura) {
         Long L = Long.parseLong(id_docente);
         return moduloService.registrarNombreModulo(moduloRequest, L);
     }

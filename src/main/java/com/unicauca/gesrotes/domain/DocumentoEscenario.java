@@ -1,11 +1,17 @@
 package com.unicauca.gesrotes.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -16,6 +22,7 @@ public class DocumentoEscenario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_DocumentosEscenarios")
     private Long id;
+    
     private Date vigencia;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_id_EscenariosDocEsc")
