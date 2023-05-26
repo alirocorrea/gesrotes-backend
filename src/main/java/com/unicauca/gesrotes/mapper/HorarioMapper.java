@@ -5,10 +5,13 @@ import com.unicauca.gesrotes.common.Util;
 import com.unicauca.gesrotes.domain.HorarioModulo;
 import com.unicauca.gesrotes.domain.Modulo;
 import com.unicauca.gesrotes.dto.HorarioDTO;
+import com.unicauca.gesrotes.dto.HorariosModulosDTO;
 import com.unicauca.gesrotes.dto.request.CreateHorarioRequest;
 import com.unicauca.gesrotes.dto.response.CreateHorarioResponse;
 
 import java.util.List;
+
+import org.springframework.stereotype.Component;
 
 public class HorarioMapper {
 
@@ -41,4 +44,21 @@ public class HorarioMapper {
                 .horaFin(Util.numeroHoraToDateHora(request.getHoraFin()))
                 .build();
     }
+
+
+
+    public static HorariosModulosDTO horarioModuloToDTO(HorarioModulo horarioModulo) {
+        HorariosModulosDTO horarioModuloDTO =  HorariosModulosDTO.builder()
+        .nombreModulo(horarioModulo.getModulo().getNombre())
+       .codigoAsignatura(horarioModulo.getModulo().getDocente().getAsignaturas().get(0).getCodigo())
+       .descripcionAsignatura(horarioModulo.getModulo().getDocente().getAsignaturas().get(0).getDescripcion())
+       .dia(horarioModulo.getDia())
+       .horaInicio(horarioModulo.getHoraInicio())
+       .horaFin(horarioModulo.getHoraFin())
+       .nombreEscenario(horarioModulo.getEscenario().getNombre())
+       .descripcionServicio(horarioModulo.getServicio().getDescripcion())
+       .build();
+       return horarioModuloDTO;
+   }
+
 }
