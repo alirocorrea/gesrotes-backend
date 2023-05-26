@@ -1,4 +1,5 @@
 package com.unicauca.gesrotes.service.impl;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -8,6 +9,7 @@ import com.unicauca.gesrotes.domain.Escenario;
 import com.unicauca.gesrotes.domain.Modulo;
 import com.unicauca.gesrotes.domain.Servicio;
 import com.unicauca.gesrotes.dto.HorarioDTO;
+import com.unicauca.gesrotes.dto.HorariosModulosDTO;
 import com.unicauca.gesrotes.dto.request.CreateHorarioRequest;
 import com.unicauca.gesrotes.dto.response.CreateHorarioResponse;
 import com.unicauca.gesrotes.exception.ApplicationException;
@@ -65,6 +67,16 @@ public class HorarioServiceImpl implements HorarioService {
                 .map(HorarioMapper::toHorarioDTO)
                 .collect(Collectors.toList());
         return HorarioMapper.toCreateHorarioResponse(modulo, horarios);
+    }
+
+    @Override
+    public List<HorariosModulosDTO> getHorariosModulos(Long id_docente, Long id_asignatura) {
+        List<HorarioModulo> horarios = horarioRepository.findAllByDocenteAsignatura(id_docente, id_asignatura);
+        List<HorariosModulosDTO> horariosDTO = new ArrayList<>();
+        for(HorarioModulo horario : horarios) {
+            horariosDTO.add(HorarioMapper.horarioModuloToDTO(horario));
+        }
+        return horariosDTO;
     }
 
 }

@@ -1,4 +1,5 @@
 package com.unicauca.gesrotes.web.controller;
+import com.unicauca.gesrotes.dto.HorariosModulosDTO;
 import com.unicauca.gesrotes.dto.request.CreateHorarioRequest;
 import com.unicauca.gesrotes.dto.response.CreateHorarioResponse;
 import com.unicauca.gesrotes.service.HorarioService;
@@ -9,12 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.webjars.NotFoundException;
+
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -46,6 +50,17 @@ public class HorarioController {
                                                                 @RequestBody @Valid final CreateHorarioRequest request) {
         return ResponseEntity.ok(horariosService.createHorario(idModulo, request));
     }
+
+    @GetMapping("/listado")
+    @Operation(summary = "Obtiene los horarios asociados a la asignatura y al docente")
+
+    public ResponseEntity<List<HorariosModulosDTO>>  getHorariosModulos(@RequestParam("id_docente")Long id_docente, @RequestParam("id_asignatura")Long id_asignatura){
+
+        List<HorariosModulosDTO> createHorarioResponse = this.horariosService.getHorariosModulos(id_docente, id_asignatura);
+        return ResponseEntity.ok(createHorarioResponse);
+
+    }
+
 
 }
 
