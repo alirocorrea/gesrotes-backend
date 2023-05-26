@@ -7,7 +7,6 @@ import com.unicauca.gesrotes.common.Constants;
 import com.unicauca.gesrotes.domain.Docente;
 import com.unicauca.gesrotes.domain.Modulo;
 import com.unicauca.gesrotes.dto.DocenteDTO;
-import com.unicauca.gesrotes.dto.response.DocenteModuloResponse;
 import com.unicauca.gesrotes.dto.response.DocenteResponse;
 
 public final class DocenteMapper {

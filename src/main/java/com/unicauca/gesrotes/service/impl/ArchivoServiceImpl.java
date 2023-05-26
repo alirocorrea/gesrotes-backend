@@ -1,8 +1,6 @@
 package com.unicauca.gesrotes.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.unicauca.gesrotes.common.Util;
-import com.unicauca.gesrotes.domain.Archivo;
 import com.unicauca.gesrotes.domain.DocumentoEscenario;
 import com.unicauca.gesrotes.dto.request.ObjetoArchivoRequest;
 import com.unicauca.gesrotes.repository.ArchivoRepository;
@@ -14,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 

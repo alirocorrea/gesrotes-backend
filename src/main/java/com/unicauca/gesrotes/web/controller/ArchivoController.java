@@ -1,6 +1,5 @@
 package com.unicauca.gesrotes.web.controller;
 
-import com.unicauca.gesrotes.dto.request.ObjetoArchivoRequest;
 import com.unicauca.gesrotes.service.ArchivoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
