@@ -3,6 +3,8 @@ package com.unicauca.gesrotes.service.impl;
 import java.io.IOException;
 import java.text.ParseException;
 
+import com.unicauca.gesrotes.common.FileUtil;
+import com.unicauca.gesrotes.common.Messages;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -63,5 +65,15 @@ public class DocumentoServiceImpl implements DocumentoService{
     private boolean escenarioExiste(long idEscenario){
         return escenarioRepository.existsById(idEscenario);
     }
-    
+
+    @Override
+    public byte[] getDocumento(final Long idArchivo) {
+        Archivo archivo = archivoRepository.findById(idArchivo)
+                .orElseThrow(() -> new ApplicationException(Messages.ID_ARCHIVO_NO_ENCONTRADO));
+        byte[] file = storageService.getFile(archivo.getUuid());
+        if(FileUtil.emptyByteArray(file)) {
+            throw new ApplicationException(Messages.UUID_NO_ENCONTRADO_STORAGE);
+        }
+        return file;
+    }
 }

@@ -3,6 +3,8 @@ package com.unicauca.gesrotes.web.controller;
 import java.io.IOException;
 import java.text.ParseException;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,15 +27,21 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/api/documentos")
 public class DocumentoController {
 
-    private DocumentoService documentoServicio;
+    private DocumentoService documentoService;
 
     @Operation(summary = "Registrar un documento asociado a un escenario")
-    @PostMapping("/guardar/")
+    @PostMapping("/guardar")
     public DocumentoUUIDResponse registrarNombreModulo(@RequestBody ObjetoArchivoRequest documentoRequest, 
                                                 @RequestParam("id_escenario") String id_escenario,
                                                 @RequestParam("file") MultipartFile file) throws IOException, ParseException {
         Long L = Long.parseLong(id_escenario);
-        return documentoServicio.guardarDocumento(file, documentoRequest, L);
+        return documentoService.guardarDocumento(file, documentoRequest, L);
+    }
+
+    @Operation(summary = "Obtener un documento en arraglo de bytes (Descargar HE05-HU05)")
+    @GetMapping("/descargar")
+    public ResponseEntity<byte[]> getDocumento(@RequestParam("id_documento") final Long idArchivo) {
+        return ResponseEntity.ok(documentoService.getDocumento(idArchivo));
     }
     
 }

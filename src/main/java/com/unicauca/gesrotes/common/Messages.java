@@ -17,6 +17,8 @@ public final class Messages {
     public static final String ID_GRUPO_NO_ENCONTRADO = "El ID del Grupo no fue encontrado";
     public static final String ID_HORARIO_NO_ENCONTRADO = "El ID del Horario no fue encontrado";
     public static final String ID_CICLO_NO_ENCONTRADO = "El ID del Ciclo no fue encontrado";
-    
+    public static final String ID_ARCHIVO_NO_ENCONTRADO = "El ID del Documento (Archivo) no fue encontrado";
+    public static final String UUID_NO_ENCONTRADO_STORAGE = "UUID no encontrado en el storage";
+
 
 }
