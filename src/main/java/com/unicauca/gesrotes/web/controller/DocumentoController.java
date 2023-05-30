@@ -9,7 +9,6 @@ import java.util.Map;
 import com.unicauca.gesrotes.dto.DocumentoDTO;
 import com.unicauca.gesrotes.service.ArchivoService;
 import com.unicauca.gesrotes.service.DocumentoEscenarioService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,13 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.unicauca.gesrotes.dto.request.ObjetoArchivoRequest;
 import com.unicauca.gesrotes.dto.response.DocumentoUUIDResponse;
 import com.unicauca.gesrotes.service.DocumentoService;
 
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
@@ -43,11 +42,12 @@ public class DocumentoController {
 
     @Operation(summary = "Registrar un documento asociado a un escenario")
     @PostMapping("/guardar")
-    public DocumentoUUIDResponse registrarNombreModulo(@RequestBody ObjetoArchivoRequest documentoRequest, 
+    public DocumentoUUIDResponse registrarNombreModulo(@ModelAttribute ObjetoArchivoRequest objRequest, 
                                                 @RequestParam("id_escenario") String id_escenario,
                                                 @RequestParam("file") MultipartFile file) throws IOException, ParseException {
+        ObjetoArchivoRequest nuevoObjeto = new ObjectMapper().readValue(objRequest.getNombre(), ObjetoArchivoRequest.class);
         Long L = Long.parseLong(id_escenario);
-        return documentoService.guardarDocumento(file, documentoRequest, L);
+        return documentoService.guardarDocumento(file, nuevoObjeto, L);
     }
 
     @Operation(summary = "Obtener un documento en arraglo de bytes (Descargar HE05-HU05)")
