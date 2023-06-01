@@ -34,7 +34,7 @@ public final class GrupoMapper {
         }
 
         return Grupo.builder()
-        .activo("Sí")
+        .activo(true)
         .vigencia(formatter.parse(dateString))
         .build();
     }
