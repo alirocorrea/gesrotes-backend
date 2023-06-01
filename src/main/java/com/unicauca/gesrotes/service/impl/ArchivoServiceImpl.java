@@ -1,6 +1,7 @@
 package com.unicauca.gesrotes.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.unicauca.gesrotes.domain.Archivo;
 import com.unicauca.gesrotes.domain.DocumentoEscenario;
 import com.unicauca.gesrotes.dto.request.ObjetoArchivoRequest;
 import com.unicauca.gesrotes.repository.ArchivoRepository;
@@ -8,12 +9,14 @@ import com.unicauca.gesrotes.repository.DocumentoEscenarioRepository;
 import com.unicauca.gesrotes.service.ArchivoService;
 import com.unicauca.gesrotes.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class ArchivoServiceImpl implements ArchivoService {
@@ -69,6 +72,16 @@ public class ArchivoServiceImpl implements ArchivoService {
             return objectMapper.readValue(jsonString, ObjetoArchivoRequest.class);
         }catch (Exception e){
             return null;
+        }
+    }
+
+    @Override
+    public void eliminarArchivo(Long id_documento) throws NotFoundException {
+        Optional<Archivo> archivo = archivoRepository.findById(id_documento);
+        if(archivo.isPresent()){
+            archivoRepository.deleteById(id_documento);
+        }else {
+            throw new NotFoundException();
         }
     }
 }

@@ -13,4 +13,6 @@ public interface DocumentoService {
     DocumentoUUIDResponse guardarDocumento(MultipartFile file, ObjetoArchivoRequest documentoRequest, Long idEscenario) throws IOException, ParseException;
 
     byte[] getDocumento(Long idArchivo);
+
+    void eliminarArchivo(Long id_documnento);
 }

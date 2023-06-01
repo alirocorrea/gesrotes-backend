@@ -9,8 +9,11 @@ import java.util.Map;
 import com.unicauca.gesrotes.dto.DocumentoDTO;
 import com.unicauca.gesrotes.service.ArchivoService;
 import com.unicauca.gesrotes.service.DocumentoEscenarioService;
+
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -68,5 +71,18 @@ public class DocumentoController {
     @PutMapping("/editar")
     public ResponseEntity<String> actualizarArchivo(@RequestParam Long id_documento, @RequestParam("file") MultipartFile file,@ModelAttribute(name = "datosEditar") String datosEditar){
         return new ResponseEntity<>(archivoService.editarArchivo(id_documento,file,datosEditar), HttpStatus.ACCEPTED);
+    }
+
+
+    @Operation(summary = "HE05-HU03 Eliminar un documento")
+    @DeleteMapping("/eliminar/")
+    public ResponseEntity<String> eliminarArchivo(@RequestParam Long id_documento) throws NotFoundException{
+        try {
+            documentoService.eliminarArchivo(id_documento);
+            return new ResponseEntity<>("Archivo eliminado correctamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al eliminar el Archivo con ID " + id_documento, HttpStatus.INTERNAL_SERVER_ERROR);
+        } 
+        
     }
 }
