@@ -25,7 +25,6 @@ public class Grupo {
     private Long id;
     @Temporal(TemporalType.DATE)
     private Date vigencia;
-    private Boolean activo;
     @ManyToMany(mappedBy = "grupos")
     private List<Estudiante> estudiantes;
     @ManyToOne(fetch = FetchType.LAZY)
