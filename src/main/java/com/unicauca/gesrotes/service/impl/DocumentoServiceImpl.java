@@ -2,11 +2,13 @@ package com.unicauca.gesrotes.service.impl;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Optional;
 
 import com.unicauca.gesrotes.common.FileUtil;
 import com.unicauca.gesrotes.common.Messages;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.webjars.NotFoundException;
 
 import com.unicauca.gesrotes.dto.request.ObjetoArchivoRequest;
 import com.unicauca.gesrotes.dto.response.DocumentoUUIDResponse;
@@ -76,4 +78,15 @@ public class DocumentoServiceImpl implements DocumentoService{
         }
         return file;
     }
+
+    @Override
+    public void eliminarArchivo(Long id_documento) {
+        Optional<Archivo> archivo = archivoRepository.findById(id_documento);
+        if(archivo.isPresent()){
+            archivoRepository.deleteById(id_documento);
+        }else {
+            throw new NotFoundException("El archivo con ID "+id_documento+" no existe");
+        }
+    }
+   
 }
