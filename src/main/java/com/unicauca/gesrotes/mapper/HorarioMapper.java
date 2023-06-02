@@ -11,7 +11,6 @@ import com.unicauca.gesrotes.dto.response.CreateHorarioResponse;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
 
 public class HorarioMapper {
 
