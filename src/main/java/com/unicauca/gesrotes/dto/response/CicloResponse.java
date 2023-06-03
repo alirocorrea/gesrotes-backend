@@ -1,5 +1,6 @@
 package com.unicauca.gesrotes.dto.response;
 
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -7,6 +8,6 @@ import lombok.Data;
 @Builder
 public class CicloResponse {
     private Long id;
-    private FechaResponse inicio;
-    private FechaResponse fin;
+    private String inicio;
+    private String fin;
 }
