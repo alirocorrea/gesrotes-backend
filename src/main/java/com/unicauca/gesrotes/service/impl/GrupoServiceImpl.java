@@ -40,7 +40,6 @@ public class GrupoServiceImpl implements GrupoService{
         grupo.setAsignatura(asignatura);
 
         List<Grupo> listaAsociados=grupoRepository.findByAsignatura(asignatura);
-        System.out.println("***AQUI:1");
 
         return GrupoMapper.mapearResponse(grupoRepository.save(grupo), listaAsociados.size()+1);
     }
