@@ -2,8 +2,8 @@ package com.unicauca.gesrotes.service.impl;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.Optional;
 
+import com.unicauca.gesrotes.common.Check;
 import com.unicauca.gesrotes.common.FileUtil;
 import com.unicauca.gesrotes.common.Messages;
 import org.springframework.stereotype.Service;
@@ -69,10 +69,12 @@ public class DocumentoServiceImpl implements DocumentoService{
     }
 
     @Override
-    public byte[] getDocumento(final Long idArchivo) {
-        Archivo archivo = archivoRepository.findById(idArchivo)
-                .orElseThrow(() -> new ApplicationException(Messages.ID_ARCHIVO_NO_ENCONTRADO));
-        byte[] file = storageService.getFile(archivo.getUuid());
+    public byte[] getDocumento(final Long idDocumentoEscenario) {
+        DocumentoEscenario documentoEscenario = documentoEscenarioRepository.getDocumentoEscenarioArchivo(idDocumentoEscenario);
+        if (Check.isNull(documentoEscenario)) {
+            throw new ApplicationException(Messages.ID_DOCUMENTO_NO_ENCONTRADO);
+        }
+        byte[] file = storageService.getFile(documentoEscenario.getArchivo().getUuid());
         if(FileUtil.emptyByteArray(file)) {
             throw new ApplicationException(Messages.UUID_NO_ENCONTRADO_STORAGE);
         }
@@ -81,12 +83,14 @@ public class DocumentoServiceImpl implements DocumentoService{
 
     @Override
     public void eliminarArchivo(Long id_documento) {
-        Optional<Archivo> archivo = archivoRepository.findById(id_documento);
-        if(archivo.isPresent()){
-            archivoRepository.deleteById(id_documento);
-        }else {
-            throw new NotFoundException("El archivo con ID "+id_documento+" no existe");
+        DocumentoEscenario documentoEscenario = documentoEscenarioRepository.getDocumentoEscenarioArchivo(id_documento);
+        if(Check.isNotNull(documentoEscenario)){
+            Long idArchivo = documentoEscenario.getArchivo().getId();
+            documentoEscenarioRepository.deleteById(documentoEscenario.getId());
+            archivoRepository.deleteById(idArchivo);
+        } else {
+            throw new NotFoundException("El documento con ID " + id_documento + " no existe");
         }
     }
-   
+
 }

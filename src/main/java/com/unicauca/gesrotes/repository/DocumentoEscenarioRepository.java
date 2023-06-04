@@ -1,5 +1,6 @@
 package com.unicauca.gesrotes.repository;
 
+import com.unicauca.gesrotes.domain.Archivo;
 import com.unicauca.gesrotes.domain.DocumentoEscenario;
 
 import java.util.List;
@@ -16,5 +17,8 @@ public interface DocumentoEscenarioRepository extends JpaRepository<DocumentoEsc
 
     @Query("SELECT d FROM DocumentoEscenario d WHERE d.escenario.id = ?1")
     List<DocumentoEscenario> findByEscenarioIdEscenarios(Long idEscenario);
+
+    @Query("SELECT de FROM DocumentoEscenario de JOIN FETCH de.archivo arc WHERE de.id = ?1")
+    DocumentoEscenario getDocumentoEscenarioArchivo(final Long idDocumentoEscenario);
 
 }
