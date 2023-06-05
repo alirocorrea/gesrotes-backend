@@ -18,6 +18,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,6 +45,13 @@ public class GrupoController {
         Asignatura asignatura = new Asignatura();
         asignatura.setId(id_asignatura);
         return ResponseEntity.ok(grupoService.findByAsignatura(asignatura));
+    }
+
+    @Operation(summary = "Eliminar un grupo por id_grupo")
+    @DeleteMapping("/eliminar")
+    public ResponseEntity<String> eliminarGrupo(@RequestParam Long id_grupo) {
+        grupoService.eliminarGrupo(id_grupo);
+        return ResponseEntity.ok("OK");
     }
 
 }
