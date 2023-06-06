@@ -55,8 +55,8 @@ public class DocumentoController {
 
     @Operation(summary = "Obtener un documento en arraglo de bytes (Descargar HE05-HU05)")
     @GetMapping("/descargar")
-    public ResponseEntity<byte[]> getDocumento(@RequestParam("id_documento") final Long idArchivo) {
-        return ResponseEntity.ok(documentoService.getDocumento(idArchivo));
+    public ResponseEntity<byte[]> getDocumento(@RequestParam("id_documento") final Long idDocumentoEscenario) {
+        return ResponseEntity.ok(documentoService.getDocumento(idDocumentoEscenario));
     }
 
     @GetMapping("/listado")
@@ -79,7 +79,7 @@ public class DocumentoController {
     public ResponseEntity<String> eliminarArchivo(@RequestParam Long id_documento) throws NotFoundException{
         try {
             documentoService.eliminarArchivo(id_documento);
-            return new ResponseEntity<>("Archivo eliminado correctamente", HttpStatus.OK);
+            return new ResponseEntity<>("Documento eliminado correctamente", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Error al eliminar el Archivo con ID " + id_documento, HttpStatus.INTERNAL_SERVER_ERROR);
         } 
