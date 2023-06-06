@@ -26,10 +26,9 @@ public final class EscenariosMapper {
     public static EscenariosDocumentosResponse mapeaResponse(Escenario pEscenario) {
         Date fechaActual = new Date();
         int documentosExpirados = 0;
-        String info;
         List<DocumentoEscenario> documentoEscenarios = pEscenario.getDocumentosEscenario();
         if(documentoEscenarios.size()==0){
-            info = "No existen documentos para este escenario";
+            documentosExpirados = -1;
         }
         else{
             for (DocumentoEscenario documentoEscenario : documentoEscenarios) {
@@ -37,11 +36,12 @@ public final class EscenariosMapper {
                     documentosExpirados++;
                 }
             }
-            info = "Documentos expirados: "+documentosExpirados;
         }
+        
         return EscenariosDocumentosResponse.builder()
-        .escenarios(EscenariosMapper.domainToDTO(pEscenario))
-        .info(info)
+        .id(pEscenario.getId())
+        .nombre(pEscenario.getNombre())
+        .documentos_expirados(documentosExpirados)
         .build();
     }
 }

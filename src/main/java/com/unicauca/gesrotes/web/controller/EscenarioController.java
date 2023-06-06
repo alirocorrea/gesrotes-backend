@@ -1,5 +1,6 @@
 package com.unicauca.gesrotes.web.controller;
 
+import com.unicauca.gesrotes.dto.response.EscenariosDocumentosFullResponse;
 import com.unicauca.gesrotes.dto.response.EscenariosDocumentosResponse;
 import com.unicauca.gesrotes.dto.response.EscenariosResponse;
 import com.unicauca.gesrotes.service.EscenarioService;
@@ -30,7 +31,7 @@ public class EscenarioController {
 
     @GetMapping("/estado_documentos")
     @Operation(summary = "estado de los documentos (Expirados)")
-    public List<EscenariosDocumentosResponse> getEscenariosDocumentos() {
+    public EscenariosDocumentosFullResponse getEscenariosDocumentos() {
         return escenarioService.getEscenariosDocumentos();
     }
 } 

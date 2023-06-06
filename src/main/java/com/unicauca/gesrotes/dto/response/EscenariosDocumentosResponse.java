@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 @Builder
 public class EscenariosDocumentosResponse {
-    private EscenariosResponse escenarios;
-    private String info;
+    private Long id;
+    private String nombre;
+    private int documentos_expirados;
 }
