@@ -16,4 +16,8 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 
     @Query("SELECT g FROM Grupo g WHERE g.asignatura.id = ?1")
     List<Grupo> getByIdAsignatura(final Long idAsignatura);
+
+    void deleteByid(Long id_grupo);
+    
+
 }

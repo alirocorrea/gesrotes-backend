@@ -10,8 +10,10 @@ import com.unicauca.gesrotes.domain.Grupo;
 import com.unicauca.gesrotes.dto.response.GrupoResponse;
 import com.unicauca.gesrotes.exception.ApplicationException;
 import com.unicauca.gesrotes.mapper.GrupoMapper;
+import org.springframework.transaction.annotation.Transactional;
 import com.unicauca.gesrotes.repository.AsignaturaRepository;
 import com.unicauca.gesrotes.repository.GrupoRepository;
+import com.unicauca.gesrotes.repository.GrupoEstudianteRepository;
 import com.unicauca.gesrotes.service.GrupoService;
 
 import lombok.AllArgsConstructor;
@@ -22,6 +24,7 @@ public class GrupoServiceImpl implements GrupoService{
 
     private GrupoRepository grupoRepository;
     private AsignaturaRepository asignaturaRepository;
+    private GrupoEstudianteRepository gruposEstudiantesRepository;
 
     @Override
     public List<Grupo> findByAsignatura(Asignatura asignatura) {
@@ -46,6 +49,13 @@ public class GrupoServiceImpl implements GrupoService{
 
     private boolean asignaturaExiste(long idAsignatura){
         return asignaturaRepository.existsById(idAsignatura);
+    }
+    
+    @Transactional
+    @Override
+    public void eliminarGrupo(Long id_grupo) {
+        grupoRepository.deleteByid(id_grupo);
+        gruposEstudiantesRepository.deleteBygrupoId(id_grupo); 
     }
     
 }
