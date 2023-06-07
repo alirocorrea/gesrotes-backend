@@ -31,31 +31,31 @@ public class ServicioServiceImpl implements ServicioService{
     public ServicioFullResponse listarServiciosPorEscenario(long id) {
         
     
-    if(!escenarioExiste(id)){
-        throw new ResponseStatusException(
-            HttpStatus.NOT_FOUND, "El escenario no existe."
-        );
-    }
-    
-    
-    Escenario varEscenario = escenarioRepository.findById(id).get();
-
-    
-
-    List<Servicio> listaServicios=new ArrayList<>();
-    listaServicios=servicioRepository.findByEscenario(varEscenario);
-    
+        if(!escenarioExiste(id)){
+            throw new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "El escenario no existe."
+            );
+        }
         
-    List<ServicioResponse> listaResultado=new ArrayList<>();
-    for(Servicio iServicio : listaServicios){
-        listaResultado.add(ServicioMapper.mapearResponse(iServicio));
-    }
-    if(listaResultado.size()==0){
-        throw new ResponseStatusException(
-            HttpStatus.NOT_FOUND, "No se encontraron Servicios asociados."
-        );
-    }
-    return ServicioFullMapper.mapearResponse(listaResultado);
+        
+        Escenario varEscenario = escenarioRepository.findById(id).get();
+
+        
+
+        List<Servicio> listaServicios=new ArrayList<>();
+        listaServicios=servicioRepository.findByEscenario(varEscenario);
+        
+            
+        List<ServicioResponse> listaResultado=new ArrayList<>();
+        for(Servicio iServicio : listaServicios){
+            listaResultado.add(ServicioMapper.mapearResponse(iServicio));
+        }
+        if(listaResultado.size()==0){
+            throw new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "No se encontraron Servicios asociados."
+            );
+        }
+        return ServicioFullMapper.mapearResponse(listaResultado);
 
     }
 

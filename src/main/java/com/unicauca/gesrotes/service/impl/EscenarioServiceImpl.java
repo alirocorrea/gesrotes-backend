@@ -3,8 +3,10 @@ package com.unicauca.gesrotes.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.unicauca.gesrotes.dto.response.EscenariosDocumentosFullResponse;
 import com.unicauca.gesrotes.dto.response.EscenariosDocumentosResponse;
 import com.unicauca.gesrotes.dto.response.EscenariosResponse;
+import com.unicauca.gesrotes.mapper.DocumentoEscenarioFullMapper;
 import com.unicauca.gesrotes.mapper.EscenariosMapper;
 import com.unicauca.gesrotes.service.EscenarioService;
 import lombok.AllArgsConstructor;
@@ -32,16 +34,18 @@ public class EscenarioServiceImpl implements EscenarioService {
     }
 
     @Override
-    public List<EscenariosDocumentosResponse> getEscenariosDocumentos() {
+    public EscenariosDocumentosFullResponse getEscenariosDocumentos() {
         List<Escenario> escenarios = repository.findAll();
 
-        List<EscenariosDocumentosResponse> vEscenariosDocumentosResponses =  new ArrayList<>();
+        List <EscenariosDocumentosResponse> vEscenariosDocumentosResponses = new ArrayList<>();
         for (Escenario escenario : escenarios) {
             EscenariosDocumentosResponse vEscenariosDocumentosResponse
              = EscenariosMapper.mapeaResponse(escenario);
             vEscenariosDocumentosResponses.add(vEscenariosDocumentosResponse);
         }
-        return vEscenariosDocumentosResponses;
+
+       
+        return  DocumentoEscenarioFullMapper.mapeaResponse(vEscenariosDocumentosResponses);
     }
 
   
