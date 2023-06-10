@@ -22,6 +22,15 @@ public interface AsignacionRepository extends JpaRepository<Asignacion, Long> {
     @Query(nativeQuery = true, value = "DELETE a FROM Ciclos AS c INNER JOIN Asignaciones AS a ON c.id_Ciclos = a.fk_id_Ciclos INNER JOIN Grupos AS g ON g.id_Grupos = a.fk_id_Grupos INNER JOIN HorariosModulos AS hm ON a.fk_id_HorariosModulos = hm.id_HorariosModulos WHERE g.id_Grupos = ?1 AND c.id_Ciclos = ?2 AND hm.id_HorariosModulos = ?3 ")
     int eliminarAsignacionesPorIdGrupoIdCicloIdHorario(Long id_grupo, Long id_ciclo, Long id_Horario);
 
+    @Modifying
+    @Transactional
+    @Query(nativeQuery = true, value = "DELETE Asignaciones " +
+            "FROM Asignaciones " +
+            "INNER JOIN Ciclos ON Asignaciones.fk_id_Ciclos = Ciclos.id_Ciclos " +
+            "INNER JOIN Asignaturas ON Ciclos.fk_id_AsignaturasCic = Asignaturas.id_Asignaturas " +
+            "WHERE Asignaturas.id_Asignaturas = ?1")
+    int eliminarAsignacionesPorIdAsignatura(Long idAsignatura);
+
     @Query("SELECT a FROM Asignacion a " +
             "JOIN FETCH a.ciclo ci " +
             "JOIN FETCH a.grupo gr " +

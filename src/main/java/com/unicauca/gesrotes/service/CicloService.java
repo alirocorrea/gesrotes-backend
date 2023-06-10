@@ -6,4 +6,5 @@ import com.unicauca.gesrotes.dto.response.CicloResponseList;
 public interface CicloService {
     CicloResponseList listarCiclosAsignatura(long id_asignatura);
     CicloResponseList registrarCiclo(CicloRequest cicloRequest, long id_asignatura);
+    String eliminarCiclosPorIdAsignatura(Long idAsignatura);
 }

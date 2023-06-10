@@ -6,16 +6,10 @@ import com.unicauca.gesrotes.service.CicloService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import lombok.AllArgsConstructor;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @AllArgsConstructor
 @Tag(name = "Ciclo Controller" , description = "Servicios relacionados con los ciclos")
@@ -39,5 +33,11 @@ public class CicloController {
                                                 @RequestParam("id_asignatura") String id_asignatura) {
         Long L = Long.parseLong(id_asignatura);
         return cicloServicio.listarCiclosAsignatura(L);                                          
+    }
+
+    @Operation(summary = "HE09-HU05 Eliminar los cicos de una asignatura")
+    @DeleteMapping("/{id_asignatura}/eliminarTodo")
+    public ResponseEntity<String> eliminarCiclosPorIdAsignatura(@PathVariable Long id_asignatura){
+        return new ResponseEntity<String>(cicloServicio.eliminarCiclosPorIdAsignatura(id_asignatura), HttpStatus.ACCEPTED);
     }
 }
