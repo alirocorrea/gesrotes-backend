@@ -12,4 +12,5 @@ public interface GrupoService {
     List<Grupo> findByAsignatura(Asignatura id_asignatura);
     GrupoResponse registrarGrupo(Long l) throws ParseException;
 
+    public void eliminarGrupo(Long id_grupo);
 }
