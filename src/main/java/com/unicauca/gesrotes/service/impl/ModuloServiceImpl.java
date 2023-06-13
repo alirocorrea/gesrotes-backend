@@ -1,5 +1,8 @@
 package com.unicauca.gesrotes.service.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.unicauca.gesrotes.dto.ModuloSinHorarioDTO;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +24,10 @@ import com.unicauca.gesrotes.repository.ModuloRepository;
 import com.unicauca.gesrotes.service.ModuloService;
 import lombok.AllArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -56,8 +62,8 @@ public class ModuloServiceImpl implements ModuloService{
     }
 
     @Override
-    public ModuloSinHorarioDTO listarModulosSinHorarioAsignadoPorIdDocenteIdAsignatura(Long id_docente, Long id_asignatura) {
-        List<ModuloDTO> resDto = modulosRepository.listaModulosSinHorarioAsignado(id_docente,id_asignatura).stream().map(ModuloMapper::mapModulo).collect(Collectors.toList());
+    public ModuloSinHorarioDTO listarModulosSinHorarioAsignadoPorIdDocenteIdAsignatura(Long id_docente, Long id_asignatura){
+        List<ModuloResponse> resDto = modulosRepository.listaModulosSinHorarioAsignado(id_docente,id_asignatura).stream().map(ModuloMapper::mapearResponse).collect(Collectors.toList());
         ModuloSinHorarioDTO resModuloSinHorario = new ModuloSinHorarioDTO();
         resModuloSinHorario.setModulos_sin_horarios(resDto);
         return resModuloSinHorario;

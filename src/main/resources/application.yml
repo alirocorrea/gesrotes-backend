@@ -1,23 +1,23 @@
-#server:
-#  port: 8080
-#spring:
-#  application:
-#    name: gesrotes-backend
-#  datasource:
-#    url: jdbc:mysql://aws.connect.psdb.cloud/gesrotes-db?sslMode=VERIFY_IDENTITY
-#    username: a9jy3qf696j173nvmop7
-#    password: pscale_pw_BoUG3yITPZNkTRriDDbNYxTZ1hzEMb7Uw1DcHEtpTNc
-#  jpa:
-#    hibernate:
-#      naming:
-#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-#  jackson:
-#    serialization:
-#      fail-on-empty-beans: false
+server:
+  port: 8080
+spring:
+  application:
+    name: gesrotes-backend
+  datasource:
+    url: jdbc:mysql://aws.connect.psdb.cloud/gesrotes-db?sslMode=VERIFY_IDENTITY
+    username: a9jy3qf696j173nvmop7
+    password: pscale_pw_BoUG3yITPZNkTRriDDbNYxTZ1hzEMb7Uw1DcHEtpTNc
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
 storage:
   url: https://objectstorage.us-ashburn-1.oraclecloud.com/p/HqARMGFSRLcbU8fj5yaETnQAISD9XIPd_aZxZEYsQX8EJzp51fqcg55f8dxxkA4y/n/idbqmpqlucuh/b/bucket-gesrotes/o/
-#logging:
-  #level:
-    #org.springframework.web: DEBUG
-    #org.hibernate.SQL: DEBUG
-    #org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
