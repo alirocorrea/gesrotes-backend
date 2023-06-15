@@ -42,7 +42,7 @@ public class CicloController {
 
 
     @GetMapping("/eliminar")
-    @Operation(summary = "elimina un ciclo y las asignaciones relacionadas segun el id del Ciclo")
+    @Operation(summary = "Elimina un ciclo y las asignaciones relacionadas segun el id del Ciclo")
     public ResponseEntity<Boolean> eliminarCicloDTO(@RequestParam("id_ciclos")Long id_ciclos) {
         try{
             Boolean borrado = cicloServicio.eliminarCicloDTO(id_ciclos);

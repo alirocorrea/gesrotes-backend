@@ -23,7 +23,7 @@ public class EscenarioController {
 
     private EscenarioService escenarioService;
     
-    @GetMapping("/listado")
+    @GetMapping("/listar")
     @Operation(summary = "Obtiene todos los escenarios")
     public ResponseEntity<List<EscenariosResponse>> getEscenarios() {
         return ResponseEntity.ok(escenarioService.getEscenarios());
