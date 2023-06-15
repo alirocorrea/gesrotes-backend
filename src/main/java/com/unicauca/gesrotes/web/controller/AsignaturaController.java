@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.unicauca.gesrotes.dto.AsignaturaDTO;
 import com.unicauca.gesrotes.dto.response.AsignaturasResponse;
 import com.unicauca.gesrotes.service.AsignaturaService;
 
@@ -25,7 +26,7 @@ public class AsignaturaController {
     
     private final AsignaturaService asignaturaService;
     
-    @GetMapping("/listado")
+    @GetMapping("/listar")
     @Operation(summary = "Obtiene el listado de las asignaturas segun el id del programa")
     public ResponseEntity<List<AsignaturasResponse>> getAsignaturas(@RequestParam("id_programa")Long id_programa) {
         
@@ -33,5 +34,5 @@ public class AsignaturaController {
         
         return ResponseEntity.ok(asignaturasResponses);
     }
-    
+
 }

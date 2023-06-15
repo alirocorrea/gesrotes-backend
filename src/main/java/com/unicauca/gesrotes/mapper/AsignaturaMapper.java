@@ -1,19 +1,22 @@
 package com.unicauca.gesrotes.mapper;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Component;
 
 import com.unicauca.gesrotes.domain.Asignatura;
+import com.unicauca.gesrotes.dto.AsignaturaDTO;
 import com.unicauca.gesrotes.dto.response.AsignaturasResponse;
 
 @Component
-public class AsignaturaMapper {
+public final class AsignaturaMapper {
 
-    public  AsignaturasResponse domainToDTO(Asignatura asignatura){
+    public static AsignaturasResponse domainToDTO(Asignatura asignatura){
         AsignaturasResponse asignaturaResponse = new AsignaturasResponse();
         asignaturaResponse.setIdPrograma(asignatura.getPrograma().getId());
-        asignaturaResponse.setNombrePrograma(asignatura.getPrograma().getNombre());
-        asignaturaResponse.setIdAsignatura(asignatura.getId());
-        asignaturaResponse.setDescripcion(asignatura.getDescripcion());
+        asignaturaResponse.setPrograma(asignatura.getPrograma().getNombre());
+        asignaturaResponse.setId(asignatura.getId());
+        asignaturaResponse.setNombre(asignatura.getDescripcion());
         return asignaturaResponse;
 
     }

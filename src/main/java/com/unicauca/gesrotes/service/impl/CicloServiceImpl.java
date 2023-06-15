@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.unicauca.gesrotes.common.sortDateCompare;
 import com.unicauca.gesrotes.domain.Asignatura;
@@ -93,6 +94,14 @@ public class CicloServiceImpl implements CicloService{
         }
         
         return CicloListMapper.mapearResponse(listaResultado);
+    }
+
+    @Transactional
+    @Override
+    public Boolean eliminarCicloDTO(Long id_ciclos){
+        boolean borrado2 = ciclosRepository.eliminarCicloAsignacionDTO(id_ciclos) > 0;
+        boolean borrado = ciclosRepository.eliminarCicloDTO(id_ciclos) > 0;
+        return borrado2 && borrado;
     }
 
 

@@ -1,7 +1,12 @@
 package com.unicauca.gesrotes.mapper;
 
+import java.util.ArrayList;
+
 import com.unicauca.gesrotes.common.Constants;
+import com.unicauca.gesrotes.domain.Asignatura;
 import com.unicauca.gesrotes.domain.Ciclo;
+import com.unicauca.gesrotes.dto.AsignaturaDTO;
+import com.unicauca.gesrotes.dto.CiclosDTO;
 import com.unicauca.gesrotes.dto.request.CicloRequest;
 import com.unicauca.gesrotes.dto.response.CicloResponse;
 
@@ -23,5 +28,13 @@ public final class CicloMapper {
                 .fechaInicio(cicloRequest.getInicio())
                 .fechaFin(cicloRequest.getFin())
                 .build();
+    }
+
+    public static CiclosDTO toAsignaturaDTO(final Ciclo ciclos) {
+        return CiclosDTO.builder()
+            .idCiclos(ciclos.getId())
+            .asignaciones(new ArrayList<>())
+            .build();
+            
     }
 }

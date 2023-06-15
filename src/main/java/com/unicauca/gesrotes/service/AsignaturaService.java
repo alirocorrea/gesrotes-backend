@@ -2,6 +2,7 @@ package com.unicauca.gesrotes.service;
 
 import java.util.List;
 
+import com.unicauca.gesrotes.dto.AsignaturaDTO;
 import com.unicauca.gesrotes.dto.response.AsignaturasResponse;
 
 public interface AsignaturaService {
