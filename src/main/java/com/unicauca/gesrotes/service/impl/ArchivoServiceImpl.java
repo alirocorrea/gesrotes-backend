@@ -31,12 +31,12 @@ public class ArchivoServiceImpl implements ArchivoService {
     private DocumentoEscenarioRepository documentoEscenarioRepository;
 
     @Override
-    public String editarArchivo(Long id_archivo , MultipartFile file, String datosEditar) {
+    public String editarArchivo(Long id_archivo , MultipartFile file, ObjetoArchivoRequest objRequest) {
         try{
             //obtener el documentoescenario para poder comparar mediante el id_archivo asociado a este
             DocumentoEscenario documentoEscenario = documentoEscenarioRepository.buscarPorIdArchivo(id_archivo);
             //obtenemos los datos enviados desde front
-            ObjetoArchivoRequest obj = (ObjetoArchivoRequest) jsonAObjeto(datosEditar);
+            ObjetoArchivoRequest obj = objRequest;
 //falta empezar a comparar y subir los cambios.
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date fechaVigen = formatter.parse(obj.getFechaVigencia());

@@ -1,5 +1,6 @@
 package com.unicauca.gesrotes.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.unicauca.gesrotes.dto.request.ModuloRequest;
 import com.unicauca.gesrotes.dto.response.ModuloResponse;
 
@@ -10,7 +11,7 @@ public interface ModuloService {
 
     ModuloResponse registrarNombreModulo(ModuloRequest moduloRequest, long idDocente) ;
 
-    ModuloSinHorarioDTO listarModulosSinHorarioAsignadoPorIdDocenteIdAsignatura(Long id_docente, Long id_asignatura);
+    ModuloSinHorarioDTO listarModulosSinHorarioAsignadoPorIdDocenteIdAsignatura(Long id_docente, Long id_asignatura) ;
 
     DocenteModuloDTO listarHorarios(Long id_Asignatura);
 

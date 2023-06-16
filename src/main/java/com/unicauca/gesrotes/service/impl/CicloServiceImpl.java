@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.unicauca.gesrotes.repository.AsignacionRepository;
+import com.unicauca.gesrotes.repository.GrupoRepository;
 import org.springframework.stereotype.Service;
 
 import com.unicauca.gesrotes.common.sortDateCompare;
@@ -28,6 +30,8 @@ public class CicloServiceImpl implements CicloService{
 
     private CicloRepository ciclosRepository;
     private AsignaturaRepository asignaturasRepository;
+    private AsignacionRepository asignacionRepository;
+    private GrupoRepository grupoRepository;
 
     @Override
     public CicloResponseList listarCiclosAsignatura(long id_asignatura) {
@@ -95,5 +99,28 @@ public class CicloServiceImpl implements CicloService{
         return CicloListMapper.mapearResponse(listaResultado);
     }
 
+    @Override
+    public String eliminarCiclosPorIdAsignatura(Long idAsignatura) {
+        System.out.println("llamando el ciclo ");
+        try{
+            //eliminamos las asignaciones que estan asociadas a esa asignatura
+            int a = asignacionRepository.eliminarAsignacionesPorIdAsignatura(idAsignatura);
+            //eliminamos los ciclos asociados a esa asignatura
+            int b = ciclosRepository.eliminarCiclosPorIdAsignatura(idAsignatura);
+            //eliminar gurpos estudiantes asosiacos a esa asignatura
+            int c = ciclosRepository.eliminarGruposEstudiantesPorIdAsignatura(idAsignatura);
+            //eliminar los grupos asosiados a esa asignatura
+            int d = grupoRepository.eliminarGruposPorIdAsignatura(idAsignatura);
+        }catch (Exception ex){
+            return "fallo al eliminar";
+        }
+        return "ok";
+    }
+/*
 
+
+
+
+
+*/
 }
