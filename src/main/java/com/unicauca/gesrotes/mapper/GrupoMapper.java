@@ -42,7 +42,7 @@ public final class GrupoMapper {
         return GrupoResponse.builder()
         .id(save.getId())
         .numero_grupo(asociados)//Contar grupos asociados a asigantura
-        .asignaciones(new ArrayList<Estudiante>())//lista vacia
+        .estudiantes(new ArrayList<Estudiante>())//lista vacia
         .build();
     }
 
