@@ -12,5 +12,5 @@ import com.unicauca.gesrotes.domain.Estudiante;
 public class GrupoResponse {
     private Long id;
     private int numero_grupo;
-    private List<Estudiante> asignaciones;
+    private List<Estudiante> estudiantes;
 }
