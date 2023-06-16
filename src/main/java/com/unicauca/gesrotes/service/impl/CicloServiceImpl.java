@@ -4,12 +4,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
 import com.unicauca.gesrotes.common.sortDateCompare;
 import com.unicauca.gesrotes.domain.Asignatura;
 import com.unicauca.gesrotes.domain.Ciclo;
+import com.unicauca.gesrotes.dto.UpdateCicloDTO;
 import com.unicauca.gesrotes.dto.request.CicloRequest;
 import com.unicauca.gesrotes.dto.response.CicloResponse;
 import com.unicauca.gesrotes.dto.response.CicloResponseList;
@@ -94,6 +96,24 @@ public class CicloServiceImpl implements CicloService{
         
         return CicloListMapper.mapearResponse(listaResultado);
     }
+
+    @Override
+    public CicloResponse editarCiclo(CicloRequest cicloRequest, Long idCiclo) {
+        if(ciclosRepository.findById(idCiclo).isPresent()){
+            if (!cicloRequest.getInicio().before(cicloRequest.getFin())){
+                throw new ApplicationException("La fecha de inicio debe ser menor a la de fin");
+            }
+            Ciclo ciclo = ciclosRepository.findById(idCiclo).get();
+            ciclo.setFechaInicio(cicloRequest.getInicio());
+            ciclo.setFechaFin(cicloRequest.getFin());
+            Ciclo cicloEditado = ciclosRepository.save(ciclo);
+            CicloResponse cicloMap = CicloMapper.mapearResponse(cicloEditado);
+            return cicloMap;
+        }else {
+            throw new ApplicationException("El ciclo no existe");
+        }
+    }
+
 
 
 }

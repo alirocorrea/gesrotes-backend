@@ -29,4 +29,5 @@ public final class CicloMapper {
                 .fechaFin(cicloRequest.getFin())
                 .build();
     }
+
 }
