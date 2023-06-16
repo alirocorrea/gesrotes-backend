@@ -70,13 +70,12 @@ public class HorarioServiceImpl implements HorarioService {
     }
 
     @Override
-    public List<HorariosModulosDTO> getHorariosModulos(Long id_docente, Long id_asignatura) {
+    public HorariosModulosDTO getHorariosModulos(Long id_docente, Long id_asignatura) {
         List<HorarioModulo> horarios = horarioRepository.findAllByDocenteAsignatura(id_docente, id_asignatura);
-        List<HorariosModulosDTO> horariosDTO = new ArrayList<>();
-        for(HorarioModulo horario : horarios) {
-            horariosDTO.add(HorarioMapper.horarioModuloToDTO(horario));
-        }
-        return horariosDTO;
+        
+        System.out.println("Servicio: " + horarios.size());
+        HorariosModulosDTO horariosModulosDTO = HorarioMapper.horarioModuloToDTO(horarios);
+        return horariosModulosDTO;
     }
 
 }

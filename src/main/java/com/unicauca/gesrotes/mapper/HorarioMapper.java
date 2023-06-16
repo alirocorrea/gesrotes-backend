@@ -6,12 +6,13 @@ import com.unicauca.gesrotes.domain.HorarioModulo;
 import com.unicauca.gesrotes.domain.Modulo;
 import com.unicauca.gesrotes.dto.HorarioDTO;
 import com.unicauca.gesrotes.dto.HorariosModulosDTO;
+import com.unicauca.gesrotes.dto.ModuloDTO;
 import com.unicauca.gesrotes.dto.request.CreateHorarioRequest;
 import com.unicauca.gesrotes.dto.response.CreateHorarioResponse;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.stereotype.Component;
 
 public class HorarioMapper {
 
@@ -25,7 +26,6 @@ public class HorarioMapper {
                 .nombre(modulo.getNombre())
                 .horario(horarios)
                 .build();
-
     }
 
     public static HorarioDTO toHorarioDTO(final HorarioModulo horarioModulo) {
@@ -47,18 +47,36 @@ public class HorarioMapper {
 
 
 
-    public static HorariosModulosDTO horarioModuloToDTO(HorarioModulo horarioModulo) {
+    public static HorariosModulosDTO horarioModuloToDTO(List<HorarioModulo> horarioModulos) {
+        List<ModuloDTO> modulos = new ArrayList<>();
+
+        List<HorarioDTO> horarios = new ArrayList<>();
+
+        SimpleDateFormat format = new SimpleDateFormat("hh:mm a");
+
+        for(HorarioModulo hm : horarioModulos) {
+            HorarioDTO horario = HorarioDTO.builder()
+            .id(hm.getId())
+            .descripcion(hm.getDia() + format.format(hm.getHoraInicio()) + "-" + format.format(hm.getHoraFin()))
+            .build();
+            horarios.add(horario);
+        }
+
+
+        for(HorarioModulo hm : horarioModulos) {
+            ModuloDTO modulo = ModuloDTO.builder()
+            .id(hm.getModulo().getId())
+            .nombre(hm.getModulo().getNombre())
+            .horarios(horarios)
+            .build();
+            modulos.add(modulo);
+        }
+
         HorariosModulosDTO horarioModuloDTO =  HorariosModulosDTO.builder()
-        .nombreModulo(horarioModulo.getModulo().getNombre())
-       .codigoAsignatura(horarioModulo.getModulo().getDocente().getAsignaturas().get(0).getCodigo())
-       .descripcionAsignatura(horarioModulo.getModulo().getDocente().getAsignaturas().get(0).getDescripcion())
-       .dia(horarioModulo.getDia())
-       .horaInicio(horarioModulo.getHoraInicio())
-       .horaFin(horarioModulo.getHoraFin())
-       .nombreEscenario(horarioModulo.getEscenario().getNombre())
-       .descripcionServicio(horarioModulo.getServicio().getDescripcion())
-       .build();
-       return horarioModuloDTO;
+        .modulos(modulos)
+        .build();
+        System.out.println("Mapper: " + horarioModuloDTO);
+        return horarioModuloDTO;
    }
 
 }

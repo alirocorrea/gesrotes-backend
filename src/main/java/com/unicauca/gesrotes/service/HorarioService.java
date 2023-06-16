@@ -4,8 +4,6 @@ import com.unicauca.gesrotes.dto.HorariosModulosDTO;
 import com.unicauca.gesrotes.dto.request.CreateHorarioRequest;
 import com.unicauca.gesrotes.dto.response.CreateHorarioResponse;
 
-import java.util.List;
-
 import org.webjars.NotFoundException;
 
 public interface HorarioService {
@@ -14,6 +12,6 @@ public interface HorarioService {
 
     CreateHorarioResponse createHorario(Long idModulo, CreateHorarioRequest request);
 
-    List<HorariosModulosDTO> getHorariosModulos(Long id_docente, Long id_asignatura);
+    HorariosModulosDTO getHorariosModulos(Long id_docente, Long id_asignatura);
     
 }
