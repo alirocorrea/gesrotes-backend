@@ -27,16 +27,12 @@ public final class EscenariosMapper {
         Date fechaActual = new Date();
         int documentosExpirados = 0;
         List<DocumentoEscenario> documentoEscenarios = pEscenario.getDocumentosEscenario();
-        if(documentoEscenarios.size()==0){
-            documentosExpirados = -1;
-        }
-        else{
-            for (DocumentoEscenario documentoEscenario : documentoEscenarios) {
-                if(documentoEscenario.getVigencia().before(fechaActual)){
-                    documentosExpirados++;
-                }
+        for (DocumentoEscenario documentoEscenario : documentoEscenarios) {
+            if(documentoEscenario.getVigencia().before(fechaActual)){
+                documentosExpirados++;
             }
         }
+        
         
         return EscenariosDocumentosResponse.builder()
         .id(pEscenario.getId())
