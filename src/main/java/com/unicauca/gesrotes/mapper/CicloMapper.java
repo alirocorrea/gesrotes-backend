@@ -1,12 +1,11 @@
 package com.unicauca.gesrotes.mapper;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import com.unicauca.gesrotes.common.Constants;
 import com.unicauca.gesrotes.domain.Ciclo;
 import com.unicauca.gesrotes.dto.request.CicloRequest;
 import com.unicauca.gesrotes.dto.response.CicloResponse;
+
+import java.text.SimpleDateFormat;
 
 public final class CicloMapper {
     
@@ -29,4 +28,5 @@ public final class CicloMapper {
                 .fechaFin(cicloRequest.getFin())
                 .build();
     }
+
 }

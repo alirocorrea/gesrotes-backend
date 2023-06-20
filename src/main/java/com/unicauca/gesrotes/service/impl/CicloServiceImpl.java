@@ -1,14 +1,5 @@
 package com.unicauca.gesrotes.service.impl;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import com.unicauca.gesrotes.repository.AsignacionRepository;
-import com.unicauca.gesrotes.repository.GrupoRepository;
-import org.springframework.stereotype.Service;
-
 import com.unicauca.gesrotes.common.sortDateCompare;
 import com.unicauca.gesrotes.domain.Asignatura;
 import com.unicauca.gesrotes.domain.Ciclo;
@@ -18,11 +9,18 @@ import com.unicauca.gesrotes.dto.response.CicloResponseList;
 import com.unicauca.gesrotes.exception.ApplicationException;
 import com.unicauca.gesrotes.mapper.CicloListMapper;
 import com.unicauca.gesrotes.mapper.CicloMapper;
+import com.unicauca.gesrotes.repository.AsignacionRepository;
 import com.unicauca.gesrotes.repository.AsignaturaRepository;
 import com.unicauca.gesrotes.repository.CicloRepository;
+import com.unicauca.gesrotes.repository.GrupoRepository;
 import com.unicauca.gesrotes.service.CicloService;
-
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -116,11 +114,21 @@ public class CicloServiceImpl implements CicloService{
         }
         return "ok";
     }
-/*
 
-
-
-
-
-*/
+    @Override
+    public CicloResponse editarCiclo(CicloRequest cicloRequest, Long idCiclo) {
+        if(ciclosRepository.findById(idCiclo).isPresent()){
+            if (!cicloRequest.getInicio().before(cicloRequest.getFin())){
+                throw new ApplicationException("La fecha de inicio debe ser menor a la de fin");
+            }
+            Ciclo ciclo = ciclosRepository.findById(idCiclo).get();
+            ciclo.setFechaInicio(cicloRequest.getInicio());
+            ciclo.setFechaFin(cicloRequest.getFin());
+            Ciclo cicloEditado = ciclosRepository.save(ciclo);
+            CicloResponse cicloMap = CicloMapper.mapearResponse(cicloEditado);
+            return cicloMap;
+        }else {
+            throw new ApplicationException("El ciclo no existe");
+        }
+    }
 }
