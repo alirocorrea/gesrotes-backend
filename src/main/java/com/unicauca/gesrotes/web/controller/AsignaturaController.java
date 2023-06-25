@@ -23,7 +23,7 @@ public class AsignaturaController {
     
     private final AsignaturaService asignaturaService;
     
-    @GetMapping("/listado")
+    @GetMapping("/listar")
     @Operation(summary = "Obtiene el listado de las asignaturas segun el id del programa")
     public ResponseEntity<List<AsignaturasResponse>> getAsignaturas(@RequestParam("id_programa")Long id_programa) {
         

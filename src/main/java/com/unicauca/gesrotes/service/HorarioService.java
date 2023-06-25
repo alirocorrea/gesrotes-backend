@@ -14,6 +14,7 @@ public interface HorarioService {
 
     CreateHorarioResponse createHorario(Long idModulo, CreateHorarioRequest request);
 
-    List<HorariosModulosDTO> getHorariosModulos(Long id_docente, Long id_asignatura);
+    HorariosModulosDTO getHorariosModulos(Long id_docente, Long id_asignatura);
+    //List<HorariosModulosDTO> getHorariosModulos(Long id_docente, Long id_asignatura);
     
 }
