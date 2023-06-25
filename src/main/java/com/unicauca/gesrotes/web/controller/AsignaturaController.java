@@ -1,14 +1,12 @@
 package com.unicauca.gesrotes.web.controller;
 
-import java.util.List;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.unicauca.gesrotes.dto.response.AsignaturasResponse;
+import com.unicauca.gesrotes.dto.AsignaturaDTO;
 import com.unicauca.gesrotes.service.AsignaturaService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,11 +23,19 @@ public class AsignaturaController {
     
     @GetMapping("/listar")
     @Operation(summary = "Obtiene el listado de las asignaturas segun el id del programa")
+    public ResponseEntity<AsignaturaDTO> getAsignaturas(@RequestParam("id_programa")Long id_programa) {
+        
+        AsignaturaDTO asignaturasResponses =  this.asignaturaService.getAsignaturas(id_programa);
+        
+        return ResponseEntity.ok(asignaturasResponses);
+    }
+    /*
     public ResponseEntity<List<AsignaturasResponse>> getAsignaturas(@RequestParam("id_programa")Long id_programa) {
         
         List<AsignaturasResponse> asignaturasResponses =  this.asignaturaService.getAsignaturas(id_programa);
         
         return ResponseEntity.ok(asignaturasResponses);
     }
+    */
     
 }
