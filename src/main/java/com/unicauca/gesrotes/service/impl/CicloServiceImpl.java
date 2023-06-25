@@ -16,6 +16,7 @@ import com.unicauca.gesrotes.repository.GrupoRepository;
 import com.unicauca.gesrotes.service.CicloService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -131,4 +132,14 @@ public class CicloServiceImpl implements CicloService{
             throw new ApplicationException("El ciclo no existe");
         }
     }
+
+
+    @Transactional
+    @Override
+    public Boolean eliminarCicloDTO(Long id_ciclos){
+        boolean borrado2 = ciclosRepository.eliminarCicloAsignacionDTO(id_ciclos) > 0;
+        boolean borrado = ciclosRepository.eliminarCicloDTO(id_ciclos) > 0;
+        return borrado2 && borrado;
+    }
+
 }

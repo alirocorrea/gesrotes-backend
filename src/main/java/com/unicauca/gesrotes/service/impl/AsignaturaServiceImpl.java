@@ -27,15 +27,5 @@ public class AsignaturaServiceImpl implements AsignaturaService{
         AsignaturaDTO asignaturaDTO = AsignaturaMapper.domainToDTO(asignaturas);
         return asignaturaDTO;
     }
-    /* 
-    public List<AsignaturasResponse> getAsignaturas(Long id_programa) {
-        List<Asignatura> asignaturas = repository.findAllByProgramaId(id_programa);
-        List<AsignaturasResponse> asignaturasResponses = new ArrayList<>();
-        for (Asignatura asignatura : asignaturas) {
-            AsignaturasResponse asignaturasResponse = mapper.domainToDTO(asignatura);
-            asignaturasResponses.add(asignaturasResponse);                  
-        }
-        return asignaturasResponses;
-    }
-    */
+    
 }

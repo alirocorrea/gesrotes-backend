@@ -9,4 +9,6 @@ public interface CicloService {
     CicloResponseList registrarCiclo(CicloRequest cicloRequest, long id_asignatura);
     String eliminarCiclosPorIdAsignatura(Long idAsignatura);
     CicloResponse editarCiclo(CicloRequest cicloRequest, Long idCiclo);
+
+    Boolean eliminarCicloDTO(final Long id_ciclos);
 }

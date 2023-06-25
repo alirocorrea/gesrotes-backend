@@ -79,20 +79,5 @@ public class HorarioMapper {
         return horarioModuloDTO;
     }
 
-    /* 
-    public static HorariosModulosDTO horarioModuloToDTO(HorarioModulo horarioModulo) {
-        HorariosModulosDTO horarioModuloDTO =  HorariosModulosDTO.builder()
-        .nombreModulo(horarioModulo.getModulo().getNombre())
-       .codigoAsignatura(horarioModulo.getModulo().getDocente().getAsignaturas().get(0).getCodigo())
-       .descripcionAsignatura(horarioModulo.getModulo().getDocente().getAsignaturas().get(0).getDescripcion())
-       .dia(horarioModulo.getDia())
-       .horaInicio(horarioModulo.getHoraInicio())
-       .horaFin(horarioModulo.getHoraFin())
-       .nombreEscenario(horarioModulo.getEscenario().getNombre())
-       .descripcionServicio(horarioModulo.getServicio().getDescripcion())
-       .build();
-       return horarioModuloDTO;
-   }
-   */
 
 }

@@ -11,15 +11,5 @@ import lombok.Data;
 public class HorariosModulosDTO {
 
     private List<ModuloDTO> modulos;
-    /* 
-    private String codigoAsignatura;
-    private String descripcionAsignatura;
-    private String nombreModulo;
-    private String dia;
-    private Date horaInicio;
-    private Date horaFin;
-    private String nombreEscenario;
-    private String descripcionServicio;
     
-    */
 }

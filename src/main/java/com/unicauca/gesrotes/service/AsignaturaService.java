@@ -7,6 +7,5 @@ import com.unicauca.gesrotes.dto.AsignaturaDTO;
 public interface AsignaturaService {
     
     AsignaturaDTO getAsignaturas(Long id_programa);
-    //List<AsignaturasResponse> getAsignaturas(Long id_programa);
     
 }

@@ -29,13 +29,5 @@ public class AsignaturaController {
         
         return ResponseEntity.ok(asignaturasResponses);
     }
-    /*
-    public ResponseEntity<List<AsignaturasResponse>> getAsignaturas(@RequestParam("id_programa")Long id_programa) {
-        
-        List<AsignaturasResponse> asignaturasResponses =  this.asignaturaService.getAsignaturas(id_programa);
-        
-        return ResponseEntity.ok(asignaturasResponses);
-    }
-    */
     
 }

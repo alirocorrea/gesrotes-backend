@@ -58,15 +58,6 @@ public class HorarioController {
         HorariosModulosDTO createHorarioResponse = this.horariosService.getHorariosModulos(id_docente, id_asignatura);
         return ResponseEntity.ok(createHorarioResponse);
     }
-    
-    /* 
-    public ResponseEntity<List<HorariosModulosDTO>>  getHorariosModulos(@RequestParam("id_docente")Long id_docente, @RequestParam("id_asignatura")Long id_asignatura){
-
-        List<HorariosModulosDTO> createHorarioResponse = this.horariosService.getHorariosModulos(id_docente, id_asignatura);
-        return ResponseEntity.ok(createHorarioResponse);
-
-    }
-    */
 
 }
 

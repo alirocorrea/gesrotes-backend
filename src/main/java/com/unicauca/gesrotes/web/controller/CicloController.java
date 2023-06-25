@@ -57,4 +57,19 @@ public class CicloController {
         return cicloServicio.editarCiclo(cicloRequest, L);
 
     } 
+
+    @GetMapping("/eliminar")
+    @Operation(summary = "Elimina un ciclo y las asignaciones relacionadas segun el id del Ciclo")
+    public ResponseEntity<Boolean> eliminarCicloDTO(@RequestParam("id_ciclos")Long id_ciclos) {
+        try{
+            Boolean borrado = cicloServicio.eliminarCicloDTO(id_ciclos);
+            if(borrado) {
+                return ResponseEntity.ok(borrado);
+            }
+            return ResponseEntity.notFound().build();
+        }catch(Exception e){
+            return ResponseEntity.status(500).build();
+            
+        }
+    }
 }
