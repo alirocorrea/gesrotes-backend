@@ -54,4 +54,11 @@ public class GrupoController {
         return ResponseEntity.ok("OK");
     }
 
+    @Operation(summary = "Eliminar un estudiante de un grupo por id_grupo e id_estudiante")
+    @DeleteMapping("/retirarEstudiante")
+    public ResponseEntity<String> retirarEstudiante(@RequestParam Long id_estudiante, @RequestParam Long id_grupo) {
+        grupoService.retirarEstudiante(id_estudiante, id_grupo);
+        return ResponseEntity.ok("OK");
+    }
+
 }
