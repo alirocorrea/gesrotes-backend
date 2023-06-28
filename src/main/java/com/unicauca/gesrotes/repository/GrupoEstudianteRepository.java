@@ -18,6 +18,7 @@ public interface GrupoEstudianteRepository extends JpaRepository<GrupoEstudiante
     @Transactional
     void deleteBygrupoId(Long id_grupo);
 
+    @Modifying
     @Transactional
     void deleteByestudianteIdAndgrupoId(Long id_estudiante, Long id_grupo);
 }
