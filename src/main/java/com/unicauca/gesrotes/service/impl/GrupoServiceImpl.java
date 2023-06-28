@@ -61,7 +61,7 @@ public class GrupoServiceImpl implements GrupoService{
     @Override
     @Transactional
     public void retirarEstudiante(Long id_estudiante, Long id_grupo) {
-        gruposEstudiantesRepository.deleteByestudianteIdAndgrupoId(id_estudiante, id_grupo);
+        gruposEstudiantesRepository.deleteByEstudianteAndGrupo(id_estudiante, id_grupo);
     }
     
 }
