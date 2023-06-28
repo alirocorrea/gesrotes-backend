@@ -1,17 +1,17 @@
 package com.unicauca.gesrotes.service;
 
 import java.text.ParseException;
-import java.util.List;
 
-import com.unicauca.gesrotes.domain.Asignatura;
-import com.unicauca.gesrotes.domain.Grupo;
 import com.unicauca.gesrotes.dto.response.GrupoResponse;
+import com.unicauca.gesrotes.dto.response.ListarGruposResponse;
 
 public interface GrupoService {
 
-    List<Grupo> findByAsignatura(Asignatura id_asignatura);
+    ListarGruposResponse getGruposAsignatura(final Long idAsignatura);
+
     GrupoResponse registrarGrupo(Long l) throws ParseException;
 
-    public void eliminarGrupo(Long id_grupo);
+    void eliminarGrupo(Long id_grupo);
+
     void retirarEstudiante(Long id_estudiante, Long id_grupo);
 }

@@ -10,6 +10,7 @@ import java.util.Date;
 import com.unicauca.gesrotes.common.Constants;
 import com.unicauca.gesrotes.domain.Estudiante;
 import com.unicauca.gesrotes.domain.Grupo;
+import com.unicauca.gesrotes.dto.GrupoDTO;
 import com.unicauca.gesrotes.dto.response.GrupoResponse;
 
 public final class GrupoMapper {
@@ -44,6 +45,12 @@ public final class GrupoMapper {
         .numero_grupo(asociados)//Contar grupos asociados a asigantura
         .estudiantes(new ArrayList<Estudiante>())//lista vacia
         .build();
+    }
+
+    public static GrupoDTO toGrupoDTO(Grupo grupo) {
+        return GrupoDTO.builder()
+                .id(grupo.getId())
+                .build();
     }
 
 }

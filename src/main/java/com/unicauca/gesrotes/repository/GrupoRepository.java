@@ -13,10 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface GrupoRepository extends JpaRepository<Grupo, Long>{
-    
+
     List<Grupo> findByAsignatura(Asignatura asignatura);
 
-    @Query("SELECT g FROM Grupo g WHERE g.asignatura.id = ?1")
+    @Query("SELECT g FROM Grupo g WHERE g.asignatura.id = ?1 ORDER BY g.id")
     List<Grupo> getByIdAsignatura(final Long idAsignatura);
 
     void deleteByid(Long id_grupo);

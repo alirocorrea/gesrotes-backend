@@ -1,8 +1,8 @@
 package com.unicauca.gesrotes.web.controller;
 
-import com.unicauca.gesrotes.domain.Asignatura;
 import com.unicauca.gesrotes.domain.Grupo;
 import com.unicauca.gesrotes.dto.response.GrupoResponse;
+import com.unicauca.gesrotes.dto.response.ListarGruposResponse;
 import com.unicauca.gesrotes.service.GrupoService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -40,10 +40,8 @@ public class GrupoController {
 
     @GetMapping("/listar/{id_asignatura}")
     @Operation(summary = "Listar grupos registrados en la Asignatura")
-    public ResponseEntity<List<Grupo>> findByAsignatura(@PathVariable Long id_asignatura) {
-        Asignatura asignatura = new Asignatura();
-        asignatura.setId(id_asignatura);
-        return ResponseEntity.ok(grupoService.findByAsignatura(asignatura));
+    public ResponseEntity<ListarGruposResponse> getGruposAsignatura(@PathVariable("id_asignatura") final Long idAsignatura) {
+        return ResponseEntity.ok(grupoService.getGruposAsignatura(idAsignatura));
     }
 
     @Operation(summary = "Eliminar un grupo por id_grupo")
