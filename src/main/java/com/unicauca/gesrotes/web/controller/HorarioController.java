@@ -33,7 +33,7 @@ public class HorarioController {
 
     @Operation(summary = "Eliminar horarios de un docente en una asignatura,")
     @DeleteMapping("/eliminar")
-    public ResponseEntity<String> eliminarHorario(@RequestParam("id_horariosmodulos") Long id_horariosmodulos) {
+    public ResponseEntity<String> eliminarHorario(@RequestParam("id_horario") Long id_horariosmodulos) {
         try {
             horariosService.eliminarHorarioporId(id_horariosmodulos);
             return new ResponseEntity<>("Horario eliminado correctamente", HttpStatus.OK);
