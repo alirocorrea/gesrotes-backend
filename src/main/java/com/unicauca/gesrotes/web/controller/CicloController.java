@@ -7,6 +7,7 @@ import com.unicauca.gesrotes.service.CicloService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -56,5 +57,16 @@ public class CicloController {
         Long L = (long) id_ciclo;
         return cicloServicio.editarCiclo(cicloRequest, L);
 
+    } 
+
+    @Operation(summary = "Eliminar un ciclo")
+    @DeleteMapping("/{id_ciclo}/eliminar")
+    public ResponseEntity<String> eliminar(@PathVariable Long id_ciclo){
+        try {
+          cicloServicio.eliminar(id_ciclo); 
+        } catch (Exception e) {
+          return ResponseEntity.internalServerError().body("Error durante la eliminacion del ciclo");
+        }
+        return ResponseEntity.ok("OK");
     } 
 }

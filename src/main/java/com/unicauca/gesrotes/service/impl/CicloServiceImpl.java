@@ -131,4 +131,9 @@ public class CicloServiceImpl implements CicloService{
             throw new ApplicationException("El ciclo no existe");
         }
     }
+
+    @Override
+    public void  eliminar(Long l) {
+      ciclosRepository.deleteByCicloId(l);
+    }
 }

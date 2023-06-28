@@ -36,4 +36,9 @@ public interface CicloRepository extends JpaRepository<Ciclo, Long>{
             "WHERE Asignaturas.id_Asignaturas = ?1 ")
     int eliminarGruposEstudiantesPorIdAsignatura(Long idAsignatura);
 
+    @Modifying
+    @Transactional
+    @Query(nativeQuery = true, value = "DELETE FROM Ciclos c WHERE c.id_Ciclos = ?1 ")
+    public void deleteByCicloId(Long l);
+
 }
