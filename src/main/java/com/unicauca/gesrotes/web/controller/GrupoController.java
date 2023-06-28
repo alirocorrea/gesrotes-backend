@@ -3,7 +3,6 @@ package com.unicauca.gesrotes.web.controller;
 import com.unicauca.gesrotes.domain.Asignatura;
 import com.unicauca.gesrotes.domain.Grupo;
 import com.unicauca.gesrotes.dto.response.GrupoResponse;
-import com.unicauca.gesrotes.repository.GrupoRepository;
 import com.unicauca.gesrotes.service.GrupoService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -51,6 +50,17 @@ public class GrupoController {
     @DeleteMapping("/eliminar")
     public ResponseEntity<String> eliminarGrupo(@RequestParam Long id_grupo) {
         grupoService.eliminarGrupo(id_grupo);
+        return ResponseEntity.ok("OK");
+    }
+
+    @Operation(summary = "Eliminar un estudiante de un grupo por id_grupo e id_estudiante")
+    @DeleteMapping("/retirarEstudiante")
+    public ResponseEntity<String> retirarEstudiante(@RequestParam Long id_estudiante, @RequestParam Long id_grupo) {
+        try {
+            grupoService.retirarEstudiante(id_estudiante, id_grupo);    
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body("Error: Ocurrió un error durante el retiro del estudiante");
+        }        
         return ResponseEntity.ok("OK");
     }
 

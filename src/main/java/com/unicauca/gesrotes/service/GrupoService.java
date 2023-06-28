@@ -13,4 +13,5 @@ public interface GrupoService {
     GrupoResponse registrarGrupo(Long l) throws ParseException;
 
     public void eliminarGrupo(Long id_grupo);
+    void retirarEstudiante(Long id_estudiante, Long id_grupo);
 }
