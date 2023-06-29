@@ -18,8 +18,7 @@ public final class EscenariosMapper {
     public static EscenariosResponse domainToDTO(Escenario escenario) {
         EscenariosResponse escenarioResponse = new EscenariosResponse();
         escenarioResponse.setId(escenario.getId());
-        escenarioResponse.setNombre(escenario.getNombre());
-        escenarioResponse.setDireccion(escenario.getDireccion());
+        escenarioResponse.setDescripcion(escenario.getNombre());
         return escenarioResponse;
     }
 
