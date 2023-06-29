@@ -29,7 +29,7 @@ public final class DocenteMapper {
                 }
             }
             if(counterModulosNoHorarios==0){
-                varInfo="None";
+                varInfo=null;
             }
             else{
                 varInfo=counterModulosNoHorarios + " Horarios sin configurar";

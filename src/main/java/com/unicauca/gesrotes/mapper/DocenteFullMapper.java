@@ -15,7 +15,7 @@ public final class DocenteFullMapper {
     public static DocenteFullResponse mapearResponse(List<DocenteResponse>  parDocentes) {
         int counterPersonasPorRegistrar=0;
         for(DocenteResponse iDocenteResponse : parDocentes){
-            if(!iDocenteResponse.getInfo().equals("None")){
+            if(iDocenteResponse.getInfo() != null){
                 counterPersonasPorRegistrar++;
             }
         }
