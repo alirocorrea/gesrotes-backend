@@ -16,6 +16,7 @@ import com.unicauca.gesrotes.repository.GrupoRepository;
 import com.unicauca.gesrotes.service.CicloService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
