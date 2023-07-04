@@ -12,7 +12,9 @@ import com.unicauca.gesrotes.dto.response.CreateHorarioResponse;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class HorarioMapper {
@@ -48,33 +50,42 @@ public class HorarioMapper {
     }
 
     public static HorariosModulosDTO horarioModuloToDTO(List<HorarioModulo> horarioModulos) {
-        List<ModuloDTO> modulos = new ArrayList<>();
-
-        List<HorarioDTO> horarios = new ArrayList<>();
-
         SimpleDateFormat format = new SimpleDateFormat("hh:mm a");
 
-        for(HorarioModulo hm : horarioModulos) {
+        Map<ModuloDTO, List<HorarioDTO>> moduloHorariosMap = new HashMap<>();
+
+        for (HorarioModulo hm : horarioModulos) {
+            ModuloDTO modulo = ModuloDTO.builder()
+                    .id(hm.getModulo().getId())
+                    .nombre(hm.getModulo().getNombre())
+                    .build();
+
             HorarioDTO horario = HorarioDTO.builder()
-            .id(hm.getId())
-            .descripcion(hm.getDia() + format.format(hm.getHoraInicio()) + "-" + format.format(hm.getHoraFin()))
-            .build();
-            horarios.add(horario);
+                    .id(hm.getId())
+                    .descripcion(hm.getDia() + format.format(hm.getHoraInicio()) + "-" + format.format(hm.getHoraFin()))
+                    .build();
+
+            if (moduloHorariosMap.containsKey(modulo)) {
+                moduloHorariosMap.get(modulo).add(horario);
+            } else {
+                List<HorarioDTO> horarios = new ArrayList<>();
+                horarios.add(horario);
+                moduloHorariosMap.put(modulo, horarios);
+            }
         }
 
-
-        for(HorarioModulo hm : horarioModulos) {
-            ModuloDTO modulo = ModuloDTO.builder()
-            .id(hm.getModulo().getId())
-            .nombre(hm.getModulo().getNombre())
-            .horarios(horarios)
-            .build();
+        List<ModuloDTO> modulos = new ArrayList<>();
+        for (Map.Entry<ModuloDTO, List<HorarioDTO>> entry : moduloHorariosMap.entrySet()) {
+            ModuloDTO modulo = entry.getKey();
+            List<HorarioDTO> horarios = entry.getValue();
+            modulo.setHorarios(horarios);
             modulos.add(modulo);
         }
 
-        HorariosModulosDTO horarioModuloDTO =  HorariosModulosDTO.builder()
-        .modulos(modulos)
-        .build();
+        HorariosModulosDTO horarioModuloDTO = HorariosModulosDTO.builder()
+                .modulos(modulos)
+                .build();
+
         System.out.println("Mapper: " + horarioModuloDTO);
         return horarioModuloDTO;
     }

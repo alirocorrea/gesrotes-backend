@@ -15,7 +15,13 @@ public interface HorarioRepository extends JpaRepository<HorarioModulo, Long> {
     List<HorarioModulo> getHorariosByIdModulo(final Long idModulo);
 
     @Query(
-        value ="select * from Asignaturas asg inner join AsignaturaDocentes asdoc on asg.id_Asignaturas = asdoc.asignaturas_id_Asignaturas inner join Docentes doc on asdoc.docentes_id_docente = doc.id_docente inner join Modulos modu  on modu.fk_id_DocentesMod = doc.id_Docente  inner join HorariosModulos hm on hm.id_HorariosModulos = modu.id_modulos inner join Servicios ser  on hm.fk_id_ServiciosHM = ser.id_Servicios  inner join Escenarios esc on esc.id_Escenarios = hm.fk_id_EscenariosHM where doc.id_docente = :id_docente and asg.id_Asignaturas = :id_asignatura",
+        value ="select hm.* from HorariosModulos hm " + //
+            "inner join Modulos m on hm.fk_id_Modulos = m.id_Modulos  " + //
+            "inner join Docentes d on m.fk_id_DocentesMod = d.id_docente  " + //
+            "inner join AsignaturaDocentes ad on ad.Docentes_id_docente = d.id_docente  " + //
+            "where  " + //
+            "d.id_docente = :id_docente " + //
+            "and ad.Asignaturas_id_Asignaturas = :id_asignatura",
         nativeQuery = true
         )
     List<HorarioModulo> findAllByDocenteAsignatura( @Param("id_docente") Long id_docente, @Param("id_asignatura") Long id_asignatura);
