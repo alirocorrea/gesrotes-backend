@@ -43,13 +43,7 @@ public class CicloController {
         Long L = Long.parseLong(id_asignatura);
         return cicloServicio.listarCiclosAsignatura(L);                                          
     }
-
-    @Operation(summary = "HE09-HU05 Eliminar los cicos de una asignatura")
-    @DeleteMapping("/{id_asignatura}/eliminarTodo")
-    public ResponseEntity<String> eliminarCiclosPorIdAsignatura(@PathVariable Long id_asignatura){
-        return new ResponseEntity<String>(cicloServicio.eliminarCiclosPorIdAsignatura(id_asignatura), HttpStatus.ACCEPTED);
-    }
-    
+  
     @Operation(summary = "Editar un ciclo")
     @PutMapping("/{id_ciclo}/editar")
     public CicloResponse editarCiclo(@RequestBody CicloRequest cicloRequest, 
