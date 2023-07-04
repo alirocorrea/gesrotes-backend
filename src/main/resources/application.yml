@@ -15,7 +15,7 @@ spring:
     serialization:
       fail-on-empty-beans: false
 storage:
-  url: https://objectstorage.us-ashburn-1.oraclecloud.com/p/HqARMGFSRLcbU8fj5yaETnQAISD9XIPd_aZxZEYsQX8EJzp51fqcg55f8dxxkA4y/n/idbqmpqlucuh/b/bucket-gesrotes/o/
+  url: https://objectstorage.us-ashburn-1.oraclecloud.com/p/VAern-znv9hOmWR62m4doZdpNfV0aCYq3GLA0HG_fCRCX0gf0BIPWMdCZ0c1jelU/n/idbqmpqlucuh/b/bucket-gesrotes/o/
 logging:
   level:
     org.springframework.web: DEBUG
